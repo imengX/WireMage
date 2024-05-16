@@ -1,0 +1,498 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 60;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		5123692C2BF3452F00F275C9 /* PartitionKit in Frameworks */ = {isa = PBXBuildFile; productRef = 5123692B2BF3452F00F275C9 /* PartitionKit */; };
+		5123692F2BF3453900F275C9 /* Controls in Frameworks */ = {isa = PBXBuildFile; productRef = 5123692E2BF3453900F275C9 /* Controls */; };
+		512369322BF3454600F275C9 /* Flow in Frameworks */ = {isa = PBXBuildFile; productRef = 512369312BF3454600F275C9 /* Flow */; };
+		512369352BF3467400F275C9 /* PadControl in Frameworks */ = {isa = PBXBuildFile; platformFilter = ios; productRef = 512369342BF3467400F275C9 /* PadControl */; };
+		5123695B2BF34C2000F275C9 /* ControlsDemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512369502BF34C2000F275C9 /* ControlsDemoApp.swift */; };
+		5123695C2BF34C2000F275C9 /* KeyboardDemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512369512BF34C2000F275C9 /* KeyboardDemoView.swift */; };
+		5123695D2BF34C2000F275C9 /* ArcKnobDemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512369522BF34C2000F275C9 /* ArcKnobDemoView.swift */; };
+		5123695F2BF34C2000F275C9 /* IndexedSliderDemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512369542BF34C2000F275C9 /* IndexedSliderDemoView.swift */; };
+		512369602BF34C2000F275C9 /* PitchModWheelDemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512369552BF34C2000F275C9 /* PitchModWheelDemoView.swift */; };
+		512369612BF34C2000F275C9 /* RibbonDemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512369562BF34C2000F275C9 /* RibbonDemoView.swift */; };
+		512369622BF34C2000F275C9 /* XYPadDemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512369572BF34C2000F275C9 /* XYPadDemoView.swift */; };
+		512369632BF34C2000F275C9 /* JoystickDemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512369582BF34C2000F275C9 /* JoystickDemoView.swift */; };
+		512369642BF34C2000F275C9 /* SmallKnobDemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512369592BF34C2000F275C9 /* SmallKnobDemoView.swift */; };
+		512369652BF34C2000F275C9 /* ContentView1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5123695A2BF34C2000F275C9 /* ContentView1.swift */; };
+		512369682BF5AF0100F275C9 /* Pipeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512369672BF5AF0100F275C9 /* Pipeline.swift */; };
+		51AD40E82BF344EE00CCD68E /* WireMageApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51AD40E72BF344EE00CCD68E /* WireMageApp.swift */; };
+		51AD40EA2BF344EE00CCD68E /* WireMageDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51AD40E92BF344EE00CCD68E /* WireMageDocument.swift */; };
+		51AD40EC2BF344EE00CCD68E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51AD40EB2BF344EE00CCD68E /* ContentView.swift */; };
+		51AD40EE2BF344F000CCD68E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 51AD40ED2BF344F000CCD68E /* Assets.xcassets */; };
+		51AD40F32BF344F000CCD68E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 51AD40F22BF344F000CCD68E /* Preview Assets.xcassets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		512369502BF34C2000F275C9 /* ControlsDemoApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControlsDemoApp.swift; sourceTree = "<group>"; };
+		512369512BF34C2000F275C9 /* KeyboardDemoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardDemoView.swift; sourceTree = "<group>"; };
+		512369522BF34C2000F275C9 /* ArcKnobDemoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArcKnobDemoView.swift; sourceTree = "<group>"; };
+		512369542BF34C2000F275C9 /* IndexedSliderDemoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndexedSliderDemoView.swift; sourceTree = "<group>"; };
+		512369552BF34C2000F275C9 /* PitchModWheelDemoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PitchModWheelDemoView.swift; sourceTree = "<group>"; };
+		512369562BF34C2000F275C9 /* RibbonDemoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RibbonDemoView.swift; sourceTree = "<group>"; };
+		512369572BF34C2000F275C9 /* XYPadDemoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XYPadDemoView.swift; sourceTree = "<group>"; };
+		512369582BF34C2000F275C9 /* JoystickDemoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoystickDemoView.swift; sourceTree = "<group>"; };
+		512369592BF34C2000F275C9 /* SmallKnobDemoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SmallKnobDemoView.swift; sourceTree = "<group>"; };
+		5123695A2BF34C2000F275C9 /* ContentView1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView1.swift; sourceTree = "<group>"; };
+		512369672BF5AF0100F275C9 /* Pipeline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pipeline.swift; sourceTree = "<group>"; };
+		51AD40E42BF344EE00CCD68E /* WireMage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WireMage.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		51AD40E72BF344EE00CCD68E /* WireMageApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WireMageApp.swift; sourceTree = "<group>"; };
+		51AD40E92BF344EE00CCD68E /* WireMageDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WireMageDocument.swift; sourceTree = "<group>"; };
+		51AD40EB2BF344EE00CCD68E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		51AD40ED2BF344F000CCD68E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		51AD40EF2BF344F000CCD68E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		51AD40F02BF344F000CCD68E /* WireMage.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WireMage.entitlements; sourceTree = "<group>"; };
+		51AD40F22BF344F000CCD68E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		51AD40E12BF344EE00CCD68E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				512369352BF3467400F275C9 /* PadControl in Frameworks */,
+				512369322BF3454600F275C9 /* Flow in Frameworks */,
+				5123692C2BF3452F00F275C9 /* PartitionKit in Frameworks */,
+				5123692F2BF3453900F275C9 /* Controls in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		5123694F2BF34C2000F275C9 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				512369502BF34C2000F275C9 /* ControlsDemoApp.swift */,
+				512369512BF34C2000F275C9 /* KeyboardDemoView.swift */,
+				512369522BF34C2000F275C9 /* ArcKnobDemoView.swift */,
+				512369542BF34C2000F275C9 /* IndexedSliderDemoView.swift */,
+				512369552BF34C2000F275C9 /* PitchModWheelDemoView.swift */,
+				512369562BF34C2000F275C9 /* RibbonDemoView.swift */,
+				512369572BF34C2000F275C9 /* XYPadDemoView.swift */,
+				512369582BF34C2000F275C9 /* JoystickDemoView.swift */,
+				512369592BF34C2000F275C9 /* SmallKnobDemoView.swift */,
+				5123695A2BF34C2000F275C9 /* ContentView1.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		512369662BF5AEF700F275C9 /* Pipeline */ = {
+			isa = PBXGroup;
+			children = (
+				512369672BF5AF0100F275C9 /* Pipeline.swift */,
+			);
+			path = Pipeline;
+			sourceTree = "<group>";
+		};
+		512369692BF5AF4700F275C9 /* WorkSpace */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = WorkSpace;
+			sourceTree = "<group>";
+		};
+		51AD40DB2BF344EE00CCD68E = {
+			isa = PBXGroup;
+			children = (
+				51AD40E62BF344EE00CCD68E /* WireMage */,
+				51AD40E52BF344EE00CCD68E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		51AD40E52BF344EE00CCD68E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				51AD40E42BF344EE00CCD68E /* WireMage.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		51AD40E62BF344EE00CCD68E /* WireMage */ = {
+			isa = PBXGroup;
+			children = (
+				512369692BF5AF4700F275C9 /* WorkSpace */,
+				512369662BF5AEF700F275C9 /* Pipeline */,
+				5123694F2BF34C2000F275C9 /* Shared */,
+				51AD40E72BF344EE00CCD68E /* WireMageApp.swift */,
+				51AD40E92BF344EE00CCD68E /* WireMageDocument.swift */,
+				51AD40EB2BF344EE00CCD68E /* ContentView.swift */,
+				51AD40ED2BF344F000CCD68E /* Assets.xcassets */,
+				51AD40EF2BF344F000CCD68E /* Info.plist */,
+				51AD40F02BF344F000CCD68E /* WireMage.entitlements */,
+				51AD40F12BF344F000CCD68E /* Preview Content */,
+			);
+			path = WireMage;
+			sourceTree = "<group>";
+		};
+		51AD40F12BF344F000CCD68E /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				51AD40F22BF344F000CCD68E /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		51AD40E32BF344EE00CCD68E /* WireMage */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 51AD40F62BF344F000CCD68E /* Build configuration list for PBXNativeTarget "WireMage" */;
+			buildPhases = (
+				51AD40E02BF344EE00CCD68E /* Sources */,
+				51AD40E12BF344EE00CCD68E /* Frameworks */,
+				51AD40E22BF344EE00CCD68E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = WireMage;
+			packageProductDependencies = (
+				5123692B2BF3452F00F275C9 /* PartitionKit */,
+				5123692E2BF3453900F275C9 /* Controls */,
+				512369312BF3454600F275C9 /* Flow */,
+				512369342BF3467400F275C9 /* PadControl */,
+			);
+			productName = WireMage;
+			productReference = 51AD40E42BF344EE00CCD68E /* WireMage.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		51AD40DC2BF344EE00CCD68E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1520;
+				LastUpgradeCheck = 1520;
+				TargetAttributes = {
+					51AD40E32BF344EE00CCD68E = {
+						CreatedOnToolsVersion = 15.2;
+					};
+				};
+			};
+			buildConfigurationList = 51AD40DF2BF344EE00CCD68E /* Build configuration list for PBXProject "WireMage" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 51AD40DB2BF344EE00CCD68E;
+			packageReferences = (
+				5123692A2BF3452F00F275C9 /* XCLocalSwiftPackageReference "../Package/PartitionKit" */,
+				5123692D2BF3453900F275C9 /* XCLocalSwiftPackageReference "../Package/Controls" */,
+				512369302BF3454600F275C9 /* XCLocalSwiftPackageReference "../Package/Flow" */,
+				512369332BF3467400F275C9 /* XCLocalSwiftPackageReference "../Package/PadControl" */,
+			);
+			productRefGroup = 51AD40E52BF344EE00CCD68E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				51AD40E32BF344EE00CCD68E /* WireMage */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		51AD40E22BF344EE00CCD68E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				51AD40F32BF344F000CCD68E /* Preview Assets.xcassets in Resources */,
+				51AD40EE2BF344F000CCD68E /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		51AD40E02BF344EE00CCD68E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				51AD40E82BF344EE00CCD68E /* WireMageApp.swift in Sources */,
+				512369682BF5AF0100F275C9 /* Pipeline.swift in Sources */,
+				512369622BF34C2000F275C9 /* XYPadDemoView.swift in Sources */,
+				512369652BF34C2000F275C9 /* ContentView1.swift in Sources */,
+				5123695D2BF34C2000F275C9 /* ArcKnobDemoView.swift in Sources */,
+				512369642BF34C2000F275C9 /* SmallKnobDemoView.swift in Sources */,
+				5123695F2BF34C2000F275C9 /* IndexedSliderDemoView.swift in Sources */,
+				51AD40EA2BF344EE00CCD68E /* WireMageDocument.swift in Sources */,
+				5123695B2BF34C2000F275C9 /* ControlsDemoApp.swift in Sources */,
+				5123695C2BF34C2000F275C9 /* KeyboardDemoView.swift in Sources */,
+				51AD40EC2BF344EE00CCD68E /* ContentView.swift in Sources */,
+				512369632BF34C2000F275C9 /* JoystickDemoView.swift in Sources */,
+				512369602BF34C2000F275C9 /* PitchModWheelDemoView.swift in Sources */,
+				512369612BF34C2000F275C9 /* RibbonDemoView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		51AD40F42BF344F000CCD68E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		51AD40F52BF344F000CCD68E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		51AD40F72BF344F000CCD68E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = WireMage/WireMage.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"WireMage/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = WireMage/Info.plist;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				"INFOPLIST_KEY_UISupportsDocumentBrowser[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UISupportsDocumentBrowser[sdk=iphonesimulator*]" = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 13.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.imengX.WireMage;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		51AD40F82BF344F000CCD68E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = WireMage/WireMage.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"WireMage/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = WireMage/Info.plist;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				"INFOPLIST_KEY_UISupportsDocumentBrowser[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UISupportsDocumentBrowser[sdk=iphonesimulator*]" = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 13.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.imengX.WireMage;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		51AD40DF2BF344EE00CCD68E /* Build configuration list for PBXProject "WireMage" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				51AD40F42BF344F000CCD68E /* Debug */,
+				51AD40F52BF344F000CCD68E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		51AD40F62BF344F000CCD68E /* Build configuration list for PBXNativeTarget "WireMage" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				51AD40F72BF344F000CCD68E /* Debug */,
+				51AD40F82BF344F000CCD68E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		5123692A2BF3452F00F275C9 /* XCLocalSwiftPackageReference "../Package/PartitionKit" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../Package/PartitionKit;
+		};
+		5123692D2BF3453900F275C9 /* XCLocalSwiftPackageReference "../Package/Controls" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../Package/Controls;
+		};
+		512369302BF3454600F275C9 /* XCLocalSwiftPackageReference "../Package/Flow" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../Package/Flow;
+		};
+		512369332BF3467400F275C9 /* XCLocalSwiftPackageReference "../Package/PadControl" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../Package/PadControl;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		5123692B2BF3452F00F275C9 /* PartitionKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = PartitionKit;
+		};
+		5123692E2BF3453900F275C9 /* Controls */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Controls;
+		};
+		512369312BF3454600F275C9 /* Flow */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Flow;
+		};
+		512369342BF3467400F275C9 /* PadControl */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = PadControl;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 51AD40DC2BF344EE00CCD68E /* Project object */;
+}
