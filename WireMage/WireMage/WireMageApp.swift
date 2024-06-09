@@ -9,6 +9,7 @@ import SwiftUI
 import Flow
 import Controls
 import PartitionKit
+import Popovers
 
 
 struct ContentView2: View {
@@ -67,41 +68,58 @@ struct ContentView2: View {
 
 @main
 struct WireMageApp: App {
-    @State private var showAlert = false
-    @State private var nodeName: String = ""
 
-//    @State var controls: [ControlNode.Type] = []
+    @State private var addNodePanel = false
+    @State private var editNodeView = false
+
     @State var patch = Patch(nodes: [], wires: [])
 
-    @State var selection = Set<NodeIndex>()
+    @State var selection = Set<FlowNodeIndex>()
 
-    func addNode(with name: String) {
-        let controlType = Joystick.self
-        let newNode = Node(name: name, titleBarColor: Color.red, inputs: controlType.inputs, outputs: controlType.outputs)
-        patch.nodes.append(newNode)
+    @State var nodes: [FlowNodeIndex: WMNodeProtocol] = [:]
+
+    func addNode(_ node: WMNodeProtocol) {
+        let portNode = (node as? FlowNodePortProtocol)
+        let flowNode = FlowNode(
+            name: node.name, 
+            titleBarColor: .red,
+            inputs: portNode?.inputs ?? [],
+            outputs: portNode?.outputs ?? []
+        )
+        nodes[patch.nodes.count] = node
+        patch.nodes.append(flowNode)
     }
 
     var body: some Scene {
         WindowGroup {
             ZStack(alignment: .topTrailing) {
-                NodeEditor(patch: $patch, selection: $selection)
-                Button("Add Node") {
-                    showAlert.toggle()
-                }.padding()
-                ContentView2()
-            }
-            .alert(Text("Alert Title"), isPresented: $showAlert) {
-                TextField("Enter your node name", text: $nodeName)
-                if nodeName.isEmpty == false {
-                    Button("OK", role: .none) {
-                        addNode(with: nodeName)
-                        showAlert.toggle()
+                if editNodeView {
+                    if addNodePanel {
+                        NodeCreateView { node in
+                            addNode(node)
+                            addNodePanel.toggle()
+                        }
+                        Button("完成") {
+                            addNodePanel.toggle()
+                        }.padding()
+                    } else {
+                        NodeEditor(patch: $patch, selection: $selection)
+                        HStack {
+                            Button("添加") {
+                                addNodePanel.toggle()
+                            }.padding()
+                            Button("完成") {
+                                editNodeView.toggle()
+                            }.padding()
+                        }
                     }
+                } else {
+                    WorkSpace(nodes: nodes, patch: patch)
+                    Button("编辑") {
+                        editNodeView.toggle()
+                    }.padding()
                 }
-                Button("Cancel", role: .cancel) {
-                    showAlert.toggle()
-                }
-            }
+            }.ignoresSafeArea(.all, edges: [.bottom, .horizontal])
         }
         DocumentGroup(newDocument: WireMageDocument()) { file in
             ContentView(document: file.$document)
@@ -110,19 +128,19 @@ struct WireMageApp: App {
 }
 
 func randomPatch() -> Patch {
-    var randomNodes: [Node] = []
+    var randomNodes: [FlowNode] = []
     for n in 0 ..< 50 {
         let randomPoint = CGPoint(x: 1000 * Double.random(in: 0 ... 1),
                                   y: 1000 * Double.random(in: 0 ... 1))
-        randomNodes.append(Node(name: "node\(n)",
+        randomNodes.append(FlowNode(name: "node\(n)",
                                 position: randomPoint,
                                 inputs: ["In"],
                                 outputs: ["Out"]))
     }
 
-    var randomWires: Set<Wire> = []
+    var randomWires: Set<FlowWire> = []
     for n in 0 ..< 50 {
-        randomWires.insert(Wire(from: OutputID(n, 0), to: InputID(Int.random(in: 0 ... 49), 0)))
+        randomWires.insert(FlowWire(from: FlowOutputID(n, 0), to: FlowInputID(Int.random(in: 0 ... 49), 0)))
     }
     return Patch(nodes: randomNodes, wires: randomWires)
 }

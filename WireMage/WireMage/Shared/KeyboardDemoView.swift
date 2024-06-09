@@ -144,123 +144,72 @@ extension Flow.Port {
     }
 }
 
-extension Joystick: SourceNode {
-    enum CodingKeys: String, CodingKey, CaseIterable {
-        case radius
-        case angle
-    }
+//extension Joystick: SourceNode {
+//    enum CodingKeys: String, CodingKey, CaseIterable {
+//        case radius
+//        case angle
+//    }
+//
+//    struct JoyStickData: Codable {
+//        var radius: Float
+//        var angle: Float
+//    }
+//
+//    static var inputs: [Flow.Port] { [] }
+//    static var outputs: [Flow.Port] { [Flow.Port(name: "radius", type: .control), Flow.Port(name: "angle", type: .control)] }
+//}
+//
+//extension XYPad: SourceNode {
+//    static var inputs: [Flow.Port] { [] }
+//    static var outputs: [Flow.Port] { [Flow.Port(name: "x", type: .control), Flow.Port(name: "y", type: .control)] }
+//}
+//
+////extension ArcKnob: SourceNode {
+////    static var inputs: [Flow.Port] { [] }
+////    static var outputs: [Flow.Port] { [Flow.Port(name: "value", type: .control)] }
+////}
+//
+//extension SmallKnob: SourceNode {
+//    static var inputs: [Flow.Port] { [] }
+//    static var outputs: [Flow.Port] { [Flow.Port(name: "value", type: .control)] }
+//}
+//
+//extension IndexedSlider: SourceNode {
+//    static var inputs: [Flow.Port] { [] }
+//    static var outputs: [Flow.Port] { [Flow.Port(name: "index", type: .control)] }
+//}
+//
+//extension PitchWheel: SourceNode {
+//    static var inputs: [Flow.Port] { [] }
+//    static var outputs: [Flow.Port] { [Flow.Port(name: "value", type: .control)] }
+//}
+//
+//extension ModWheel: SourceNode {
+//    static var inputs: [Flow.Port] { [] }
+//    static var outputs: [Flow.Port] { [Flow.Port(name: "value", type: .control)] }
+//}
 
-    struct JoyStickData: Codable {
-        var radius: Float
-        var angle: Float
-    }
-
-    static var inputs: [Flow.Port] { [] }
-    static var outputs: [Flow.Port] { [Flow.Port(name: "radius", type: .control), Flow.Port(name: "angle", type: .control)] }
-}
-
-extension XYPad: SourceNode {
-    static var inputs: [Flow.Port] { [] }
-    static var outputs: [Flow.Port] { [Flow.Port(name: "x", type: .control), Flow.Port(name: "y", type: .control)] }
-}
-
-extension ArcKnob: SourceNode {
-    static var inputs: [Flow.Port] { [] }
-    static var outputs: [Flow.Port] { [Flow.Port(name: "value", type: .control)] }
-}
-
-extension SmallKnob: SourceNode {
-    static var inputs: [Flow.Port] { [] }
-    static var outputs: [Flow.Port] { [Flow.Port(name: "value", type: .control)] }
-}
-
-extension IndexedSlider: SourceNode {
-    static var inputs: [Flow.Port] { [] }
-    static var outputs: [Flow.Port] { [Flow.Port(name: "index", type: .control)] }
-}
-
-extension PitchWheel: SourceNode {
-    static var inputs: [Flow.Port] { [] }
-    static var outputs: [Flow.Port] { [Flow.Port(name: "value", type: .control)] }
-}
-
-extension ModWheel: SourceNode {
-    static var inputs: [Flow.Port] { [] }
-    static var outputs: [Flow.Port] { [Flow.Port(name: "value", type: .control)] }
-}
-
-
-protocol WMNode {
-    init(with node: Flow.Node)
-}
-
-class WorkSpace {
-    let pipeline: PipelineProtocol
-    let patch: Flow.Patch
-    var nodes: [Flow.NodeIndex: WMNode]
-
-    init(nodeTypes: [Flow.NodeIndex : WMNode.Type], patch: Flow.Patch) {
-        nodes = patch.nodes.enumerated().reduce(into: [:]) { partialResult, enumElement in
-            let index: Flow.NodeIndex = enumElement.offset
-            if let nodeType = nodeTypes[index] {
-                partialResult[index] = nodeType.init(with: enumElement.element)
-            }
-        }
-        let pipelineNodes: [Flow.NodeIndex: PipelineNode] = nodes.reduce(into: [:], { partialResult, element in
-            if let node = element.value as? PipelineNode {
-                partialResult[element.key] = node
-            }
-        })
-        self.pipeline = Pipeline(nodes: pipelineNodes, wires: patch.wires)
-        self.patch = patch
-    }
-}
-
-protocol ViewNode {
-    init(with node: Flow.Node)
-    func initView()
-}
-
-class ControlNode<ValueType>: ViewNode {
-    var view: (any View)?
-    let node: Flow.Node
-
-    required init(with node: Flow.Node) {
-        self.node = node
-    }
-
-    func initView() {
-
-    }
-
-    func updateValue() {
-
-    }
-    
-}
-
-protocol FloatValueViewProtocol: View {
-    init(value: Binding<Float>)
-}
-
-extension ControlNode where ValueType: FloatValueViewProtocol {
-    func initView() where ValueType: FloatValueViewProtocol {
-        view = ValueType(value: Binding(get: {
-            return 0
-        }, set: { newValue in
-
-        }))
-    }
-}
-
-protocol ViewStack {
-    var node: Flow.Node { get }
-    var id: Flow.NodeIndex { get }
-
-    init(id: Flow.NodeIndex, node: Flow.Node)
-
-    func process()
-}
-
-
+//class WorkSpace {
+//    let pipeline: PipelineProtocol
+//    let patch: Flow.Patch
+//    var nodes: [Flow.NodeIndex: WMNodeProtocol]
+//
+//    init(nodes: [Flow.NodeIndex : WMNodeProtocol], patch: Flow.Patch) {
+//        self.nodes = nodes
+////        nodes = patch.nodes.enumerated().reduce(into: [:]) { partialResult, enumElement in
+////            let nodeID: Flow.NodeIndex = enumElement.offset
+////            if let nodeType = nodeTypes[nodeID] {
+////                partialResult[nodeID] = enumElement.element
+//////                partialResult[nodeID] = nodeType.init(with: nodeID, node: enumElement.element)
+////            }
+////        }
+//        let pipelineNodes: [Flow.NodeIndex: PipelineNode] = nodes.reduce(into: [:], { partialResult, element in
+//            if let node = element.value as? PipelineNode {
+//                partialResult[element.key] = node
+//            }
+//        })
+//        self.pipeline = Pipeline(nodes: pipelineNodes, wires: patch.wires)
+//        self.patch = patch
+//    }
+//}
 

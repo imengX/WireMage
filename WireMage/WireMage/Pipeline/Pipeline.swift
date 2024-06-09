@@ -6,22 +6,22 @@
 //
 
 import Foundation
-import Flow
 
-protocol PipelineNode: AnyObject {
+protocol PipelineNode {
 //    case control(any View.Type)
 //    case processing(Any.Type)
 //    case terminal(Any.Type)
 //    case custom(String)
 
     var pipeline: PipelineForNodeProtocol? { get set }
+    mutating func setPipeline(_ pipeline: PipelineForNodeProtocol, nodeIndex: FlowNodeIndex)
     func handlePackage(pipelinePackage: PipelinePackage) async
 }
 
 extension PipelineNode {
     func handlePackage(pipelinePackage: PipelinePackage) async {
         let input = pipelinePackage.wire.input
-        let outputID = OutputID(input.nodeIndex, 1)
+        let outputID = FlowOutputID(input.nodeIndex, 1)
         do {
             try await pipeline?.dispatch(data: pipelinePackage.data, to: outputID)
         } catch {
@@ -33,14 +33,18 @@ extension PipelineNode {
 struct PipelinePackage {
     typealias Data = Any
 
-    let wire: Wire
+    let wire: FlowWire
     let data: Data
 }
 
-protocol PipelineForNodeProtocol {
+protocol PipelineForNodeProtocol: AnyObject {
     func dispatch(package: PipelinePackage)
-    func dispatch(data: PipelinePackage.Data, to outputID: OutputID) async throws
+    func dispatch(data: PipelinePackage.Data, to outputID: FlowOutputID) async throws
 }
+
+//protocol PipelineForViewNodeProtocol: AnyObject {
+//    func dispatch(data: PipelinePackage.Data, to portID: PortIndex) async throws
+//}
 
 protocol PipelineProtocol {
 }
@@ -50,7 +54,7 @@ class Pipeline: PipelineProtocol, PipelineForNodeProtocol {
         case notFindIDMapping
     }
 
-    let nodes: [Flow.NodeIndex: PipelineNode]
+    let nodes: [FlowNodeIndex: PipelineNode]
 
     typealias Stream = AsyncThrowingStream<PipelinePackage, Error>
     private lazy var stream: Stream = {
@@ -60,10 +64,10 @@ class Pipeline: PipelineProtocol, PipelineForNodeProtocol {
     }()
     private var continuation: Stream.Continuation?
 
-    private let outputRouteMapper: [OutputID: [InputID]]
-    private let inputRouteMapper: [InputID: [OutputID]]
+    private let outputRouteMapper: [FlowOutputID: [FlowInputID]]
+    private let inputRouteMapper: [FlowInputID: [FlowOutputID]]
 
-    init(nodes: [Flow.NodeIndex: PipelineNode], wires: Set<Wire>) {
+    init(nodes: [FlowNodeIndex: PipelineNode], wires: Set<FlowWire>) {
         self.nodes = nodes
         outputRouteMapper = wires.lazy.reduce(into: [:], { partialResult, wire in
             partialResult[wire.output] = partialResult[wire.output] ?? []
@@ -73,14 +77,14 @@ class Pipeline: PipelineProtocol, PipelineForNodeProtocol {
             partialResult[wire.input] = partialResult[wire.input] ?? []
             partialResult[wire.input]?.append(wire.output)
         })
-        self.nodes.enumerated().forEach { element in
-            nodes[element.offset]?.pipeline = self
-        }
+//        self.nodes.enumerated().forEach { element in
+//            nodes[element.offset]?.pipeline = self
+//        }
 
         Task(priority: .high, operation: {
             for try await package in self.stream {
                 if let node = nodes[package.wire.input.nodeIndex] {
-//                    await self.pipeline.dispatch(package: package, to: node)
+                    //                    await self.pipeline.dispatch(package: package, to: node)
                     let _ = await node.handlePackage(pipelinePackage: package)
                 }
             }
@@ -91,12 +95,13 @@ class Pipeline: PipelineProtocol, PipelineForNodeProtocol {
         continuation?.yield(package)
     }
 
-    func dispatch(data: PipelinePackage.Data, to outputID: OutputID) async throws {
+    func dispatch(data: PipelinePackage.Data, to outputID: FlowOutputID) async throws {
         guard let inputIDs = outputRouteMapper[outputID] else { throw PipelineError.notFindIDMapping }
         for inputID in inputIDs {
-            let wire = Wire(from: outputID, to: inputID)
-//            let _ = await dispatch(package: PipelinePackage(wire: wire, data: data))
+            let wire = FlowWire(from: outputID, to: inputID)
+            //            let _ = await dispatch(package: PipelinePackage(wire: wire, data: data))
             dispatch(package: PipelinePackage(wire: wire, data: data))
         }
     }
+
 }
