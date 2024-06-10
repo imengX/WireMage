@@ -42,7 +42,10 @@ class ProcessingBasicNode: WMNodeProtocol, PipelineNode {
 }
 
 class PrintNode: ProcessingBasicNode, FlowNodePortProtocol {
-    let inputs: [FlowPort] = [FlowPort(name: "value", type: .floatValue)]
+    let inputs: [FlowPort] = [
+        FlowPort(name: "bool", type: .boolValue),
+        FlowPort(name: "float", type: .floatValue)
+    ]
     let outputs: [FlowPort] = []
 
     override func handlePackage(pipelinePackage: PipelinePackage) async {
@@ -52,10 +55,10 @@ class PrintNode: ProcessingBasicNode, FlowNodePortProtocol {
 }
 
 class PolarConvertNode: ProcessingBasicNode, FlowNodePortProtocol {
-    let inputs: [FlowPort] = [FlowPort(name: "value", type: .vectorValue)]
+    let inputs: [FlowPort] = [FlowPort(name: "vector", type: .vectorValue)]
     lazy var outputs: [FlowPort] = [polarValuePort]
 
-    let polarValuePort = FlowPort(name: "value", type: .polarValue)
+    let polarValuePort = FlowPort(name: "polar", type: .polarValue)
 
 //    // 方法：将x和y转换为极坐标
 //    static func convertToPolar(x: Float, y: Float) -> PolarValue {

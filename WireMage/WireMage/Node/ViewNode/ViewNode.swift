@@ -98,6 +98,7 @@ struct ControlViewNode<ContentView: ControlView & ViewNodeColorConfiguration>: V
             values = newValue
         }))
         .viewNodeColorConfiguration(with: viewNodeEnvironment)
+        .frame(maxWidth: ContentView.defaultSize.width, maxHeight: ContentView.defaultSize.height)
     }
 }
 

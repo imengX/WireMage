@@ -17,11 +17,14 @@ extension SingleFloatValueControlView {
 }
 
 extension Joystick: ControlView, FlowNodePortDefineProtocol {
+    static var defaultSize: CGSize { return CGSize(width: 140, height: 140) }
+
     static var outputs: [FlowPort] { [polar, radiusPort, anglePort] }
 
     static let polar = FlowPort(name: "极坐标", type: .polarValue)
     static let radiusPort = FlowPort(name: "radius", type: .floatValue)
     static let anglePort = FlowPort(name: "angle", type: .floatValue)
+
 
     init(name: String, value: Binding<[FlowPort: Any]>) {
         let origin: Float = 0
@@ -47,6 +50,7 @@ extension Joystick: ControlView, FlowNodePortDefineProtocol {
 extension Joystick: ViewNodeColorConfiguration {}
 
 extension XYPad: ControlView, FlowNodePortDefineProtocol {
+    static var defaultSize: CGSize { return CGSize(width: 140, height: 140) }
 
     static var outputs: [FlowPort] { [xPort, yPort] }
 
@@ -70,6 +74,8 @@ extension XYPad: ControlView, FlowNodePortDefineProtocol {
 extension XYPad: ViewNodeColorConfiguration {}
 
 extension ArcKnob: SingleFloatValueControlView {
+    static var defaultSize: CGSize { return CGSize(width: 140, height: 140) }
+
     init(name: String, value: Binding<Float>) {
         self.init(name, value: value)
     }
@@ -78,6 +84,8 @@ extension ArcKnob: SingleFloatValueControlView {
 extension ArcKnob: ViewNodeColorConfiguration {}
 
 extension SmallKnob: SingleFloatValueControlView {
+    static var defaultSize: CGSize { return CGSize(width: 140, height: 140) }
+
     init(name: String, value: Binding<Float>) {
         self.init(value: value)
     }
@@ -94,6 +102,8 @@ extension SmallKnob: ViewNodeColorConfiguration {}
 //}
 
 extension PitchWheel: SingleFloatValueControlView {
+    static var defaultSize: CGSize { return CGSize(width: 60, height: CGFloat.infinity) }
+
     init(name: String, value: Binding<Float>) {
         self.init(value: value)
     }
@@ -102,6 +112,8 @@ extension PitchWheel: SingleFloatValueControlView {
 extension PitchWheel: ViewNodeColorConfiguration {}
 
 extension ModWheel: SingleFloatValueControlView {
+    static var defaultSize: CGSize { return CGSize(width: 60, height: CGFloat.infinity) }
+
     init(name: String, value: Binding<Float>) {
         self.init(value: value)
     }

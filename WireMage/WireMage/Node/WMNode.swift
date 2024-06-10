@@ -7,6 +7,8 @@
 
 import Foundation
 
+protocol WMNodeEnvironment: Hashable {}
+
 protocol WMNodeProtocol {
     var name: String { get }
     init(name: String)

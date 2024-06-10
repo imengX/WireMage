@@ -26,6 +26,8 @@
 		5123696D2BF5ED8400F275C9 /* ViewNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5123696C2BF5ED8400F275C9 /* ViewNode.swift */; };
 		5123696F2BF5EE1E00F275C9 /* ViewComponentNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5123696E2BF5EE1E00F275C9 /* ViewComponentNode.swift */; };
 		512369722BF5EE6800F275C9 /* Define.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512369712BF5EE6800F275C9 /* Define.swift */; };
+		512506412C1735F0009982B5 /* SwiftUIPager in Frameworks */ = {isa = PBXBuildFile; productRef = 512506402C1735F0009982B5 /* SwiftUIPager */; };
+		512506432C1746AA009982B5 /* NodeTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512506422C1746AA009982B5 /* NodeTemplate.swift */; };
 		512622602C14CABF00693321 /* ControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5126225F2C14CABF00693321 /* ControlView.swift */; };
 		512622632C155B0900693321 /* Popovers in Frameworks */ = {isa = PBXBuildFile; productRef = 512622622C155B0900693321 /* Popovers */; };
 		51AA4B732BF6EBF1008C166C /* ProcessingNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51AA4B722BF6EBF1008C166C /* ProcessingNode.swift */; };
@@ -38,7 +40,7 @@
 		51C08D3C2C160B2700514A84 /* ControlPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51C08D3B2C160B2700514A84 /* ControlPanel.swift */; };
 		51C08D3E2C160CBE00514A84 /* WorkSpace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51C08D3D2C160CBE00514A84 /* WorkSpace.swift */; };
 		51C08D402C16CACD00514A84 /* CarControlNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51C08D3F2C16CACD00514A84 /* CarControlNode.swift */; };
-		51C08D422C16CB3300514A84 /* SignalConvertNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51C08D412C16CB3300514A84 /* SignalConvertNode.swift */; };
+		51C08D422C16CB3300514A84 /* ConvertNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51C08D412C16CB3300514A84 /* ConvertNode.swift */; };
 		51D3891F2BF5FF7200209432 /* NodeCreate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51D3891E2BF5FF7200209432 /* NodeCreate.swift */; };
 /* End PBXBuildFile section */
 
@@ -58,6 +60,7 @@
 		5123696C2BF5ED8400F275C9 /* ViewNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewNode.swift; sourceTree = "<group>"; };
 		5123696E2BF5EE1E00F275C9 /* ViewComponentNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewComponentNode.swift; sourceTree = "<group>"; };
 		512369712BF5EE6800F275C9 /* Define.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Define.swift; sourceTree = "<group>"; };
+		512506422C1746AA009982B5 /* NodeTemplate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeTemplate.swift; sourceTree = "<group>"; };
 		5126225F2C14CABF00693321 /* ControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlView.swift; sourceTree = "<group>"; };
 		51AA4B722BF6EBF1008C166C /* ProcessingNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessingNode.swift; sourceTree = "<group>"; };
 		51AA4B762BF6EDE1008C166C /* WMNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WMNode.swift; sourceTree = "<group>"; };
@@ -72,7 +75,7 @@
 		51C08D3B2C160B2700514A84 /* ControlPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlPanel.swift; sourceTree = "<group>"; };
 		51C08D3D2C160CBE00514A84 /* WorkSpace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkSpace.swift; sourceTree = "<group>"; };
 		51C08D3F2C16CACD00514A84 /* CarControlNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarControlNode.swift; sourceTree = "<group>"; };
-		51C08D412C16CB3300514A84 /* SignalConvertNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignalConvertNode.swift; sourceTree = "<group>"; };
+		51C08D412C16CB3300514A84 /* ConvertNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertNode.swift; sourceTree = "<group>"; };
 		51D3891E2BF5FF7200209432 /* NodeCreate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeCreate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -83,6 +86,7 @@
 			files = (
 				512622632C155B0900693321 /* Popovers in Frameworks */,
 				512369352BF3467400F275C9 /* PadControl in Frameworks */,
+				512506412C1735F0009982B5 /* SwiftUIPager in Frameworks */,
 				512369322BF3454600F275C9 /* Flow in Frameworks */,
 				5123692C2BF3452F00F275C9 /* PartitionKit in Frameworks */,
 				5123692F2BF3453900F275C9 /* Controls in Frameworks */,
@@ -157,7 +161,7 @@
 			children = (
 				51AA4B722BF6EBF1008C166C /* ProcessingNode.swift */,
 				51C08D3F2C16CACD00514A84 /* CarControlNode.swift */,
-				51C08D412C16CB3300514A84 /* SignalConvertNode.swift */,
+				51C08D412C16CB3300514A84 /* ConvertNode.swift */,
 			);
 			path = ProcessingNode;
 			sourceTree = "<group>";
@@ -221,6 +225,7 @@
 			isa = PBXGroup;
 			children = (
 				51D3891E2BF5FF7200209432 /* NodeCreate.swift */,
+				512506422C1746AA009982B5 /* NodeTemplate.swift */,
 			);
 			path = NodeCreate;
 			sourceTree = "<group>";
@@ -247,6 +252,7 @@
 				512369312BF3454600F275C9 /* Flow */,
 				512369342BF3467400F275C9 /* PadControl */,
 				512622622C155B0900693321 /* Popovers */,
+				512506402C1735F0009982B5 /* SwiftUIPager */,
 			);
 			productName = WireMage;
 			productReference = 51AD40E42BF344EE00CCD68E /* WireMage.app */;
@@ -282,6 +288,7 @@
 				512369302BF3454600F275C9 /* XCLocalSwiftPackageReference "../Package/Flow" */,
 				512369332BF3467400F275C9 /* XCLocalSwiftPackageReference "../Package/PadControl" */,
 				512622612C155B0900693321 /* XCLocalSwiftPackageReference "../Package/Popovers" */,
+				5125063F2C1735F0009982B5 /* XCLocalSwiftPackageReference "../Package/SwiftUIPager" */,
 			);
 			productRefGroup = 51AD40E52BF344EE00CCD68E /* Products */;
 			projectDirPath = "";
@@ -310,7 +317,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				51AD40E82BF344EE00CCD68E /* WireMageApp.swift in Sources */,
-				51C08D422C16CB3300514A84 /* SignalConvertNode.swift in Sources */,
+				51C08D422C16CB3300514A84 /* ConvertNode.swift in Sources */,
 				5123696D2BF5ED8400F275C9 /* ViewNode.swift in Sources */,
 				512369682BF5AF0100F275C9 /* Pipeline.swift in Sources */,
 				51C08D402C16CACD00514A84 /* CarControlNode.swift in Sources */,
@@ -321,6 +328,7 @@
 				512369642BF34C2000F275C9 /* SmallKnobDemoView.swift in Sources */,
 				5123695F2BF34C2000F275C9 /* IndexedSliderDemoView.swift in Sources */,
 				51AD40EA2BF344EE00CCD68E /* WireMageDocument.swift in Sources */,
+				512506432C1746AA009982B5 /* NodeTemplate.swift in Sources */,
 				5123695B2BF34C2000F275C9 /* ControlsDemoApp.swift in Sources */,
 				51AA4B732BF6EBF1008C166C /* ProcessingNode.swift in Sources */,
 				5123695C2BF34C2000F275C9 /* KeyboardDemoView.swift in Sources */,
@@ -464,6 +472,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"WireMage/Preview Content\"";
+				DEVELOPMENT_TEAM = 2Y7KRW9SPL;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WireMage/Info.plist;
@@ -479,7 +488,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				"INFOPLIST_KEY_UISupportsDocumentBrowser[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UISupportsDocumentBrowser[sdk=iphonesimulator*]" = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
@@ -503,6 +512,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"WireMage/Preview Content\"";
+				DEVELOPMENT_TEAM = 2Y7KRW9SPL;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WireMage/Info.plist;
@@ -518,7 +528,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				"INFOPLIST_KEY_UISupportsDocumentBrowser[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UISupportsDocumentBrowser[sdk=iphonesimulator*]" = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
@@ -573,6 +583,10 @@
 			isa = XCLocalSwiftPackageReference;
 			relativePath = ../Package/PadControl;
 		};
+		5125063F2C1735F0009982B5 /* XCLocalSwiftPackageReference "../Package/SwiftUIPager" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../Package/SwiftUIPager;
+		};
 		512622612C155B0900693321 /* XCLocalSwiftPackageReference "../Package/Popovers" */ = {
 			isa = XCLocalSwiftPackageReference;
 			relativePath = ../Package/Popovers;
@@ -595,6 +609,10 @@
 		512369342BF3467400F275C9 /* PadControl */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = PadControl;
+		};
+		512506402C1735F0009982B5 /* SwiftUIPager */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = SwiftUIPager;
 		};
 		512622622C155B0900693321 /* Popovers */ = {
 			isa = XCSwiftPackageProductDependency;

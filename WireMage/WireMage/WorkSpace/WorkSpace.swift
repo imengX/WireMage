@@ -6,14 +6,17 @@
 //
 
 import SwiftUI
+import Flow
 
 struct WorkSpace: View {
     let pipeline: PipelineProtocol
     let patch: FlowPatch
     var nodes: [FlowNodeIndex: WMNodeProtocol]
-    var viewNodes: [any View]
+    var viewNodes: [FlowNodeIndex: any View]
+    let viewNodesKeys: [FlowNodeIndex]
+    let layoutConstants: LayoutConstants
 
-    init(nodes: [FlowNodeIndex : WMNodeProtocol], patch: FlowPatch) {
+    init(nodes: [FlowNodeIndex : WMNodeProtocol], patch: FlowPatch, layout: LayoutConstants) {
         self.nodes = nodes
 //        nodes = patch.nodes.enumerated().reduce(into: [:]) { partialResult, enumElement in
 //            let nodeID: Flow.NodeIndex = enumElement.offset
@@ -38,23 +41,34 @@ struct WorkSpace: View {
                 obj.setPipeline(pipeLine, nodeIndex: element.key)
             }
         }
-        self.viewNodes = viewNodes.reduce(into: [any ViewNodeProtocol](), { partialResult, element in
+        self.viewNodes = viewNodes.reduce(into: [FlowNodeIndex: any View](), { partialResult, element in
             if var obj = element.value as? any PipelineNode & ViewNodeProtocol {
                 obj.setPipeline(pipeLine, nodeIndex: element.key)
-                partialResult.append(obj)
-            } else  {
-                partialResult.append(element.value)
+                partialResult[element.key] = obj
+            } else {
+                partialResult[element.key] = element.value
             }
+        })
+        self.viewNodesKeys = viewNodes.keys.map({ index in
+            return index
         })
         self.pipeline = pipeLine
         self.patch = patch
+        self.layoutConstants = layout
     }
 
     var body: some View {
         ZStack {
-            ForEach(0..<viewNodes.count, id: \.self) { index in
-                let view = viewNodes[index]
-                AnyView(view)
+            ForEach(0..<viewNodesKeys.count, id: \.self) { index in
+                let key = viewNodesKeys[index]
+                if let view = viewNodes[key] {
+                    if patch.nodes.count > key {
+                        let flowNode = patch.nodes[key]
+                        AnyView(view).position(flowNode.position).offset(CGSize(width: layoutConstants.nodeWidth / 2, height: layoutConstants.nodeTitleHeight))
+                    } else {
+                        AnyView(view)
+                    }
+                }
             }
         }
     }

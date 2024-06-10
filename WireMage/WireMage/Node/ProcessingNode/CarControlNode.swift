@@ -85,8 +85,8 @@ class CarControlNode: ProcessingBasicNode, FlowNodePortProtocol {
         isSendingSignal = false
 
         @Sendable func sendRequest(action: String) async {
-            print(action)
-            return
+//            print(action)
+//            return
             let timeIntervalSince1970 = Int(Date().timeIntervalSince1970 * 1000)
 //            print("1718004513642\n", timeIntervalSince1970)
 

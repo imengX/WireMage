@@ -14,6 +14,7 @@ import Flow
 protocol ControlView: View {
     associatedtype Value: ControlViewValue
     init(name: String, value: Binding<Value>)
+    static var defaultSize: CGSize { get }
 }
 
 protocol ControlViewValue {
@@ -44,7 +45,7 @@ extension Float: ControlViewValue {
 }
 
 extension FlowPort {
-    static let valuePort = FlowPort(name: "value", type: .floatValue)
+    static let valuePort = FlowPort(name: "float", type: .floatValue)
 }
 
 typealias JoystickNode = ControlViewNode<Joystick>

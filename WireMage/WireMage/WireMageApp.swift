@@ -70,13 +70,23 @@ struct ContentView2: View {
 struct WireMageApp: App {
 
     @State private var addNodePanel = false
-    @State private var editNodeView = false
+    @State private var editNodeView = false {
+        didSet {
+            pan = .zero
+            zoom = 1
+        }
+    }
 
     @State var patch = Patch(nodes: [], wires: [])
 
     @State var selection = Set<FlowNodeIndex>()
 
     @State var nodes: [FlowNodeIndex: WMNodeProtocol] = [:]
+
+    @State var pan: CGSize = .zero
+    @State var zoom: CGFloat = 1
+
+    let layout: LayoutConstants = LayoutConstants()
 
     func addNode(_ node: WMNodeProtocol) {
         let portNode = (node as? FlowNodePortProtocol)
@@ -92,22 +102,19 @@ struct WireMageApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ZStack(alignment: .topTrailing) {
-                if editNodeView {
-                    if addNodePanel {
-                        NodeCreateView { node in
-                            addNode(node)
-                            addNodePanel.toggle()
-                        }
-                        Button("完成") {
-                            addNodePanel.toggle()
-                        }.padding()
-                    } else {
-                        NodeEditor(patch: $patch, selection: $selection)
-                            .portColor(for: .vectorValue, Gradient(colors: [.yellow, .blue]))
-                            .portColor(for: .polarValue, Gradient(colors: [.purple, .purple]))
-                            .ignoresSafeArea(.all, edges: [.bottom, .horizontal])
-                        HStack {
+            VStack(spacing: 0, content: {
+                HStack( content: {
+                    Spacer()
+                    if editNodeView {
+                        if addNodePanel {
+                            Text("添加节点")
+                            Spacer()
+                            Button("完成") {
+                                addNodePanel.toggle()
+                            }.padding()
+                        } else {
+                            Text("编辑节点")
+                            Spacer()
                             Button("添加") {
                                 addNodePanel.toggle()
                             }.padding()
@@ -115,14 +122,51 @@ struct WireMageApp: App {
                                 editNodeView.toggle()
                             }.padding()
                         }
+                    } else {
+                        Text("控制面板")
+                        Spacer()
+                        Button("编辑") {
+                            editNodeView.toggle()
+                        }.padding()
                     }
-                } else {
-                    WorkSpace(nodes: nodes, patch: patch)
-                    Button("编辑") {
-                        editNodeView.toggle()
-                    }.padding()
-                }
-            }
+                }).zIndex(2)
+                Divider()
+                ZStack(alignment: .topLeading, content: {
+                    if editNodeView {
+                        Color(hue: 1.0, saturation: 0, brightness: 0.9)
+                            .ignoresSafeArea(.all, edges: [.bottom, .horizontal])
+                            .scaleEffect(zoom, anchor: UnitPoint(x: 0, y: 0))
+                            .offset(pan) // 设置偏移量
+                    }
+                    WorkSpace(nodes: nodes, patch: patch, layout: layout)
+                        .ignoresSafeArea(.all, edges: [.bottom, .horizontal])
+                        .scaleEffect(zoom, anchor: UnitPoint(x: 0, y: 0))
+                        .offset(pan) // 设置偏移量
+                        .opacity(editNodeView ? 0.2 : 1)
+                    if editNodeView {
+                        if addNodePanel {
+                            NodeCreateView { node in
+                                addNode(node)
+                                addNodePanel.toggle()
+                            }
+                        } else {
+                            NodeEditor(patch: $patch, selection: $selection, layout: layout)
+                                .onTransformChanged({ pan, zoom in
+                                    self.pan = CGSize(width: pan.width * zoom, height: pan.height * zoom)
+                                    self.zoom = zoom
+                                    print(pan, zoom)
+                                })
+                                .portColor(for: .vectorValue, Gradient(colors: [.yellow, .blue]))
+                                .portColor(for: .polarValue, Gradient(colors: [.purple, .purple]))
+                                .ignoresSafeArea(.container, edges: [.bottom, .horizontal])
+                        }
+    //                } else {
+    //                    WorkSpace(nodes: nodes, patch: patch, layout: layout)
+    //                        .ignoresSafeArea(.all, edges: [.bottom, .horizontal])
+                    }
+                }).zIndex(1)
+                Spacer()
+            })
         }
         DocumentGroup(newDocument: WireMageDocument()) { file in
             ContentView(document: file.$document)
