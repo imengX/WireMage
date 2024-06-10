@@ -33,6 +33,11 @@ struct WorkSpace: View {
             }
         }
         let pipeLine = Pipeline(nodes: pipelineNodes, wires: patch.wires)
+        nodes.forEach { element in
+            if var obj = element.value as? any PipelineNode {
+                obj.setPipeline(pipeLine, nodeIndex: element.key)
+            }
+        }
         self.viewNodes = viewNodes.reduce(into: [any ViewNodeProtocol](), { partialResult, element in
             if var obj = element.value as? any PipelineNode & ViewNodeProtocol {
                 obj.setPipeline(pipeLine, nodeIndex: element.key)

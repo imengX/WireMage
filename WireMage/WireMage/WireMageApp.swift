@@ -104,6 +104,9 @@ struct WireMageApp: App {
                         }.padding()
                     } else {
                         NodeEditor(patch: $patch, selection: $selection)
+                            .portColor(for: .vectorValue, Gradient(colors: [.yellow, .blue]))
+                            .portColor(for: .polarValue, Gradient(colors: [.purple, .purple]))
+                            .ignoresSafeArea(.all, edges: [.bottom, .horizontal])
                         HStack {
                             Button("添加") {
                                 addNodePanel.toggle()
@@ -119,7 +122,7 @@ struct WireMageApp: App {
                         editNodeView.toggle()
                     }.padding()
                 }
-            }.ignoresSafeArea(.all, edges: [.bottom, .horizontal])
+            }
         }
         DocumentGroup(newDocument: WireMageDocument()) { file in
             ContentView(document: file.$document)

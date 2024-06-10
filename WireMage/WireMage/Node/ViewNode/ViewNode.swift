@@ -35,18 +35,36 @@ struct ControlViewNode<ContentView: ControlView & ViewNodeColorConfiguration>: V
     @State var values: ContentView.Value = ContentView.Value.cncvDefaultValue {
         didSet {
             guard let nodeIndex = self.nodeIndex else { return }
-            if let valueMapper = values as? [FlowPort: Float] {
-                for enumerated in outputs.enumerated() {
-                    guard let data = valueMapper[enumerated.element] else { return }
-                    let portIndex = enumerated.offset
+            if let valueMapper = values as? [FlowPort: Any] {
+                for value in valueMapper {
                     Task {
                         do {
-                            try await self.pipeline?.dispatch(data: data, to: FlowOutputID(nodeIndex, portIndex))
+                            try await self.dispatch(nodeID: nodeIndex, data: value.value, to: value.key)
                         } catch {
                             print(error)
                         }
                     }
                 }
+
+//                let oldValueMapper = oldValue as? [FlowPort: any Equatable] {
+//                for value in valueMapper {
+//                    if let oldValue = oldValueMapper[value.key] {
+//                        if value.value == oldValue {
+//
+//                        }
+//                    }
+//                }
+//                for enumerated in outputs.enumerated() {
+//                    guard let data = valueMapper[enumerated.element] else { return }
+//                    let portIndex = enumerated.offset
+//                    Task {
+//                        do {
+//                            try await self.pipeline?.dispatch(data: data, to: FlowOutputID(nodeIndex, portIndex))
+//                        } catch {
+//                            print(error)
+//                        }
+//                    }
+//                }
             } else {
                 Task {
                     do {

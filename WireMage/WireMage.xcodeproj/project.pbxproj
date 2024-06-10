@@ -37,6 +37,8 @@
 		51AD40F32BF344F000CCD68E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 51AD40F22BF344F000CCD68E /* Preview Assets.xcassets */; };
 		51C08D3C2C160B2700514A84 /* ControlPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51C08D3B2C160B2700514A84 /* ControlPanel.swift */; };
 		51C08D3E2C160CBE00514A84 /* WorkSpace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51C08D3D2C160CBE00514A84 /* WorkSpace.swift */; };
+		51C08D402C16CACD00514A84 /* CarControlNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51C08D3F2C16CACD00514A84 /* CarControlNode.swift */; };
+		51C08D422C16CB3300514A84 /* SignalConvertNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51C08D412C16CB3300514A84 /* SignalConvertNode.swift */; };
 		51D3891F2BF5FF7200209432 /* NodeCreate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51D3891E2BF5FF7200209432 /* NodeCreate.swift */; };
 /* End PBXBuildFile section */
 
@@ -69,6 +71,8 @@
 		51AD40F22BF344F000CCD68E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		51C08D3B2C160B2700514A84 /* ControlPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlPanel.swift; sourceTree = "<group>"; };
 		51C08D3D2C160CBE00514A84 /* WorkSpace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkSpace.swift; sourceTree = "<group>"; };
+		51C08D3F2C16CACD00514A84 /* CarControlNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarControlNode.swift; sourceTree = "<group>"; };
+		51C08D412C16CB3300514A84 /* SignalConvertNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignalConvertNode.swift; sourceTree = "<group>"; };
 		51D3891E2BF5FF7200209432 /* NodeCreate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeCreate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -152,6 +156,8 @@
 			isa = PBXGroup;
 			children = (
 				51AA4B722BF6EBF1008C166C /* ProcessingNode.swift */,
+				51C08D3F2C16CACD00514A84 /* CarControlNode.swift */,
+				51C08D412C16CB3300514A84 /* SignalConvertNode.swift */,
 			);
 			path = ProcessingNode;
 			sourceTree = "<group>";
@@ -304,8 +310,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				51AD40E82BF344EE00CCD68E /* WireMageApp.swift in Sources */,
+				51C08D422C16CB3300514A84 /* SignalConvertNode.swift in Sources */,
 				5123696D2BF5ED8400F275C9 /* ViewNode.swift in Sources */,
 				512369682BF5AF0100F275C9 /* Pipeline.swift in Sources */,
+				51C08D402C16CACD00514A84 /* CarControlNode.swift in Sources */,
 				512369622BF34C2000F275C9 /* XYPadDemoView.swift in Sources */,
 				512369652BF34C2000F275C9 /* ContentView1.swift in Sources */,
 				5123695D2BF34C2000F275C9 /* ArcKnobDemoView.swift in Sources */,
@@ -471,7 +479,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				"INFOPLIST_KEY_UISupportsDocumentBrowser[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UISupportsDocumentBrowser[sdk=iphonesimulator*]" = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.0;
@@ -510,7 +518,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				"INFOPLIST_KEY_UISupportsDocumentBrowser[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UISupportsDocumentBrowser[sdk=iphonesimulator*]" = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 14.0;

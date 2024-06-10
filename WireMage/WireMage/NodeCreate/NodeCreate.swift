@@ -284,7 +284,9 @@ struct NodeCreateView: View {
 //        NodePreviewTemplate(RibbonNode(name: "Ribbon")),
         NodeTemplatePreviewView(PitchWheelNode(name: "PitchWheel")),
         NodeTemplatePreviewView(ModWheelNode(name: "ModWheel")),
-        PortNodePreviewView(PrintNode(name: "print"))
+        PortNodePreviewView(PrintNode(name: "print")),
+        PortNodePreviewView(SignalConvertNode(name: "信号转换器")),
+        PortNodePreviewView(CarControlNode(name: "192.168.1.9"))
     ]
     static var templates2: [any NodeTemplateProtocol & View] = [
 
@@ -430,7 +432,7 @@ struct NodeCreateConfigurationViewPopover<Content: View>: View {
                     .multilineTextAlignment(.center)
 
                 content
-                TextField("输入节点名称", text: $name)
+                TextField("输入节点信息", text: $name)
             }
             .padding()
 

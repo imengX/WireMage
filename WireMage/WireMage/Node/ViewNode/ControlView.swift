@@ -17,21 +17,29 @@ extension SingleFloatValueControlView {
 }
 
 extension Joystick: ControlView, FlowNodePortDefineProtocol {
-    static var outputs: [FlowPort] { [radiusPort, anglePort] }
+    static var outputs: [FlowPort] { [polar, radiusPort, anglePort] }
 
+    static let polar = FlowPort(name: "极坐标", type: .polarValue)
     static let radiusPort = FlowPort(name: "radius", type: .floatValue)
     static let anglePort = FlowPort(name: "angle", type: .floatValue)
 
-    init(name: String, value: Binding<[FlowPort: Float]>) {
+    init(name: String, value: Binding<[FlowPort: Any]>) {
         let origin: Float = 0
         self.init(radius: .init(get: {
-            value.wrappedValue[Self.radiusPort] ?? origin
+            value.wrappedValue[Self.radiusPort] as? Float ?? origin
         }, set: { newValue in
             value.wrappedValue[Self.radiusPort] = newValue
+            if let angle = value.wrappedValue[Self.polar] as? PolarValue {
+                value.wrappedValue[Self.polar] = PolarValue(radius: newValue, angle: angle.angle)
+            }
         }), angle: .init(get: {
-            value.wrappedValue[Self.anglePort] ?? origin
+            value.wrappedValue[Self.anglePort] as? Float ?? origin
         }, set: { newValue in
             value.wrappedValue[Self.anglePort] = newValue
+            if let radius = value.wrappedValue[Self.radiusPort] as? Float {
+                let angle = newValue * 360
+                value.wrappedValue[Self.polar] = PolarValue(radius: radius, angle: Angle(degrees: Double(angle)))
+            }
         }))
     }
 }
