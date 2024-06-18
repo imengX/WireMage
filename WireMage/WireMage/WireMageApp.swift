@@ -81,7 +81,7 @@ struct WireMageApp: App {
 
     @State var selection = Set<FlowNodeIndex>()
 
-    @State var nodes: [FlowNodeIndex: WMNodeProtocol] = [:]
+    @State var nodes: [WMNodeProtocol] = []
 
     @State var pan: CGSize = .zero
     @State var zoom: CGFloat = 1
@@ -96,52 +96,62 @@ struct WireMageApp: App {
             inputs: portNode?.inputs ?? [],
             outputs: portNode?.outputs ?? []
         )
-        nodes[patch.nodes.count] = node
+        nodes.append(node)
         patch.nodes.append(flowNode)
+    }
+
+    func deleteNodes(at indices: Set<FlowNodeIndex>) {
+        let indexSetToRemove = IndexSet(indices)
+        nodes.remove(atOffsets: indexSetToRemove)
+        patch.nodes.remove(atOffsets: indexSetToRemove)
     }
 
     var body: some Scene {
         WindowGroup {
             VStack(spacing: 0, content: {
                 HStack( content: {
-                    Spacer()
                     if editNodeView {
                         if addNodePanel {
-                            Text("添加节点")
+                            Text("添加组件").bold().padding()
                             Spacer()
                             Button("完成") {
                                 addNodePanel.toggle()
-                            }.padding()
+                            }
                         } else {
-                            Text("编辑节点")
+                            Text("编辑").bold().padding()
                             Spacer()
+                            Button("删除") {
+                                deleteNodes(at: selection)
+                                selection.removeAll()
+                            }.disabled(selection.isEmpty)
                             Button("添加") {
                                 addNodePanel.toggle()
-                            }.padding()
+                            }
                             Button("完成") {
                                 editNodeView.toggle()
-                            }.padding()
+                            }
                         }
                     } else {
-                        Text("控制面板")
+                        Text("控制面板").bold().padding()
                         Spacer()
                         Button("编辑") {
                             editNodeView.toggle()
-                        }.padding()
+                        }
                     }
-                }).zIndex(2)
-                Divider()
+                    Spacer().frame(width: 10)
+                }).zIndex(3)
+                Divider().zIndex(3)
                 ZStack(alignment: .topLeading, content: {
                     if editNodeView {
-                        Color(hue: 1.0, saturation: 0, brightness: 0.9)
+                        Color(hue: 1.0, saturation: 0, brightness: 0.98)
                             .ignoresSafeArea(.all, edges: [.bottom, .horizontal])
                             .scaleEffect(zoom, anchor: UnitPoint(x: 0, y: 0))
-                            .offset(pan) // 设置偏移量
+                            .offset(pan)
                     }
                     WorkSpace(nodes: nodes, patch: patch, layout: layout)
                         .ignoresSafeArea(.all, edges: [.bottom, .horizontal])
                         .scaleEffect(zoom, anchor: UnitPoint(x: 0, y: 0))
-                        .offset(pan) // 设置偏移量
+                        .offset(pan)
                         .opacity(editNodeView ? 0.2 : 1)
                     if editNodeView {
                         if addNodePanel {
@@ -160,9 +170,6 @@ struct WireMageApp: App {
                                 .portColor(for: .polarValue, Gradient(colors: [.purple, .purple]))
                                 .ignoresSafeArea(.container, edges: [.bottom, .horizontal])
                         }
-    //                } else {
-    //                    WorkSpace(nodes: nodes, patch: patch, layout: layout)
-    //                        .ignoresSafeArea(.all, edges: [.bottom, .horizontal])
                     }
                 }).zIndex(1)
                 Spacer()

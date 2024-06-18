@@ -19,12 +19,11 @@ extension SingleFloatValueControlView {
 extension Joystick: ControlView, FlowNodePortDefineProtocol {
     static var defaultSize: CGSize { return CGSize(width: 140, height: 140) }
 
-    static var outputs: [FlowPort] { [polar, radiusPort, anglePort] }
+    static var outputs: [FlowPort] = [polar, radiusPort, anglePort]
 
     static let polar = FlowPort(name: "极坐标", type: .polarValue)
     static let radiusPort = FlowPort(name: "radius", type: .floatValue)
     static let anglePort = FlowPort(name: "angle", type: .floatValue)
-
 
     init(name: String, value: Binding<[FlowPort: Any]>) {
         let origin: Float = 0
@@ -52,7 +51,7 @@ extension Joystick: ViewNodeColorConfiguration {}
 extension XYPad: ControlView, FlowNodePortDefineProtocol {
     static var defaultSize: CGSize { return CGSize(width: 140, height: 140) }
 
-    static var outputs: [FlowPort] { [xPort, yPort] }
+    static var outputs: [FlowPort] = [xPort, yPort]
 
     static let xPort = FlowPort(name: "x", type: .floatValue)
     static let yPort = FlowPort(name: "y", type: .floatValue)
@@ -102,7 +101,7 @@ extension SmallKnob: ViewNodeColorConfiguration {}
 //}
 
 extension PitchWheel: SingleFloatValueControlView {
-    static var defaultSize: CGSize { return CGSize(width: 60, height: CGFloat.infinity) }
+    static var defaultSize: CGSize { return CGSize(width: 60, height: 140) }
 
     init(name: String, value: Binding<Float>) {
         self.init(value: value)
@@ -112,7 +111,7 @@ extension PitchWheel: SingleFloatValueControlView {
 extension PitchWheel: ViewNodeColorConfiguration {}
 
 extension ModWheel: SingleFloatValueControlView {
-    static var defaultSize: CGSize { return CGSize(width: 60, height: CGFloat.infinity) }
+    static var defaultSize: CGSize { return CGSize(width: 60, height: 140) }
 
     init(name: String, value: Binding<Float>) {
         self.init(value: value)
@@ -120,3 +119,44 @@ extension ModWheel: SingleFloatValueControlView {
 }
 
 extension ModWheel: ViewNodeColorConfiguration {}
+
+struct PrintDisplay: View, ControlView, FlowNodePortDefineProtocol, ViewNodeColorConfiguration {
+    func foregroundColor(_ foregroundColor: Color) -> PrintDisplay {
+        return self
+    }
+    
+    func backgroundColor(_ backgroundColor: Color) -> PrintDisplay {
+        var copy = self
+        copy.backgroundColor = backgroundColor
+        return self
+    }
+
+    static var defaultSize: CGSize { return CGSize(width: 200, height: 140) }
+
+    static var inputs: [FlowPort] = [
+        FlowPort(name: "bool", type: .boolValue),
+        FlowPort(name: "float", type: .floatValue)
+    ]
+
+    var backgroundColor = Color.clear
+    let name: String
+
+    @Binding var printValue: String
+
+    init(name: String, value: Binding<String>) {
+        let origin: Float = 0
+        self.name = name
+        self._printValue = value
+        //        self.value = value
+    }
+
+    var body: some View {
+        VStack {
+            Text(name)
+            Spacer()
+            Text(printValue)
+        }.background(
+            backgroundColor
+        ).padding()
+    }
+}

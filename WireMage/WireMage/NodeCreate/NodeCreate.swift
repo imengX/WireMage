@@ -72,6 +72,7 @@ struct NodeCreateView: View {
 //        NodePreviewTemplate(RibbonNode(name: "Ribbon")),
         NodeTemplatePreviewView(PitchWheelNode(name: "PitchWheel")),
         NodeTemplatePreviewView(ModWheelNode(name: "ModWheel")),
+        NodeTemplatePreviewView(PrintDisplayNode(name: "Print")),
     ]
 
     static var templates2: [any NodeTemplateProtocol & View] = [

@@ -11,12 +11,12 @@ import Flow
 struct WorkSpace: View {
     let pipeline: PipelineProtocol
     let patch: FlowPatch
-    var nodes: [FlowNodeIndex: WMNodeProtocol]
+    var nodes: [WMNodeProtocol]
     var viewNodes: [FlowNodeIndex: any View]
     let viewNodesKeys: [FlowNodeIndex]
     let layoutConstants: LayoutConstants
 
-    init(nodes: [FlowNodeIndex : WMNodeProtocol], patch: FlowPatch, layout: LayoutConstants) {
+    init(nodes: [WMNodeProtocol], patch: FlowPatch, layout: LayoutConstants) {
         self.nodes = nodes
 //        nodes = patch.nodes.enumerated().reduce(into: [:]) { partialResult, enumElement in
 //            let nodeID: Flow.NodeIndex = enumElement.offset
@@ -27,18 +27,18 @@ struct WorkSpace: View {
 //        }
         var pipelineNodes = [FlowNodeIndex: PipelineNode]()
         var viewNodes = [FlowNodeIndex: any ViewNodeProtocol]()
-        nodes.forEach { element in
-            if let node = element.value as? PipelineNode {
-                pipelineNodes[element.key] = node
+        nodes.enumerated().forEach { enumerated in
+            if let node = enumerated.element as? PipelineNode {
+                pipelineNodes[enumerated.offset] = node
             }
-            if let node = element.value as? (any ViewNodeProtocol) {
-                viewNodes[element.key] = node
+            if let node = enumerated.element as? (any ViewNodeProtocol) {
+                viewNodes[enumerated.offset] = node
             }
         }
         let pipeLine = Pipeline(nodes: pipelineNodes, wires: patch.wires)
-        nodes.forEach { element in
-            if var obj = element.value as? any PipelineNode {
-                obj.setPipeline(pipeLine, nodeIndex: element.key)
+        nodes.enumerated().forEach { enumerated in
+            if var obj = enumerated.element as? any PipelineNode {
+                obj.setPipeline(pipeLine, nodeIndex: enumerated.offset)
             }
         }
         self.viewNodes = viewNodes.reduce(into: [FlowNodeIndex: any View](), { partialResult, element in

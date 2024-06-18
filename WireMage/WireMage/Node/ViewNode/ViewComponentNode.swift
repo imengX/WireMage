@@ -44,6 +44,14 @@ extension Float: ControlViewValue {
 //    }
 }
 
+extension Optional: ControlViewValue {
+    static var cncvDefaultValue: Optional<Wrapped> { .none }
+}
+
+extension String: ControlViewValue {
+    static var cncvDefaultValue: Self { "" }
+}
+
 extension FlowPort {
     static let valuePort = FlowPort(name: "float", type: .floatValue)
 }
@@ -55,4 +63,5 @@ typealias SmallKnobNode = ControlViewNode<SmallKnob>
 //typealias IndexedSliderNode = ControlNodeView<IndexedSlider>
 typealias PitchWheelNode = ControlViewNode<PitchWheel>
 typealias ModWheelNode = ControlViewNode<ModWheel>
+typealias PrintDisplayNode = ControlViewNode<PrintDisplay>
 

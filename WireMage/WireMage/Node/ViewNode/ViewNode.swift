@@ -24,7 +24,19 @@ struct ControlViewNode<ContentView: ControlView & ViewNodeColorConfiguration>: V
     static func == (lhs: ControlViewNode<ContentView>, rhs: ControlViewNode<ContentView>) -> Bool {
         lhs.name == rhs.name
     }
-    
+
+    func handlePackage(pipelinePackage: PipelinePackage) async {
+        if let newValue = pipelinePackage.data as? ContentView.Value {
+            self.values = newValue
+        } else if ContentView.Value.self is String.Type {
+            let printValue = String(describing: pipelinePackage.data)
+            self.values = printValue as! ContentView.Value
+            print(self.values)
+        } else {
+            self.values = ContentView.Value.cncvDefaultValue
+        }
+    }
+
     func hash(into hasher: inout Hasher) {
         name.hash(into: &hasher)
     }
