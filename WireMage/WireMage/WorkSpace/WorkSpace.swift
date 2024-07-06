@@ -7,67 +7,150 @@
 
 import SwiftUI
 import Flow
+import Observation
 
-struct WorkSpace: View {
-    let pipeline: PipelineProtocol
-    let patch: FlowPatch
-    var nodes: [WMNodeProtocol]
-    var viewNodes: [FlowNodeIndex: any View]
-    let viewNodesKeys: [FlowNodeIndex]
+//@Observable
+struct NodeSpace: Codable {
+
+    var patch: FlowPatch = FlowPatch(nodes: [], wires: [])
+    var wmNodes: [FlowNodeIndex: WMNodeProtocol] = [:]
+    
+    var pipelineNodesIndex: Set<FlowNodeIndex> = []
+    var viewNodesIndex: Set<FlowNodeIndex> = []
+
+    var pipelineNodes: [FlowNodeIndex: PipelineNode] {
+        pipelineNodesIndex.lazy.reduce(into: [FlowNodeIndex: PipelineNode]()) { partialResult, index in
+            partialResult[index] = wmNodes[index] as? PipelineNode
+        }
+    }
+    var viewNodes: [FlowNodeIndex: any ViewNodeProtocol] = [:]
+
+    enum CodingKeys: CodingKey {
+        case patch
+        case wmNodes
+        case pipelineNodesIndex
+        case viewNodesIndex
+    }
+
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(patch, forKey: .patch)
+        try container.encode(wmNodes.encode, forKey: .wmNodes)
+        try container.encode(pipelineNodesIndex, forKey: .pipelineNodesIndex)
+        try container.encode(viewNodesIndex, forKey: .viewNodesIndex)
+    }
+
+    init() {}
+
+//    required init(from decoder: Decoder) throws {
+//        let container = try decoder.container(keyedBy: CodingKeys.self)
+//        patch = try container.decode(FlowPatch.self, forKey: .patch)
+//        wmNodes = try container.decode([FlowNodeIndex: WMNodeStorage].self, forKey: .wmNodes).decode
+//        pipelineNodesIndex = try container.decode(Set<FlowNodeIndex>.self, forKey: .pipelineNodesIndex)
+//        viewNodesIndex = try container.decode(Set<FlowNodeIndex>.self, forKey: .viewNodesIndex)
+//        updateViewNodes()
+//    }
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        patch = try container.decode(FlowPatch.self, forKey: .patch)
+        wmNodes = try container.decode([FlowNodeIndex: WMNodeStorage].self, forKey: .wmNodes).decode
+        pipelineNodesIndex = try container.decode(Set<FlowNodeIndex>.self, forKey: .pipelineNodesIndex)
+        viewNodesIndex = try container.decode(Set<FlowNodeIndex>.self, forKey: .viewNodesIndex)
+        updateViewNodes()
+    }
+
+    mutating func updateViewNodes() {
+        viewNodes = viewNodesIndex.lazy.reduce(into: [FlowNodeIndex: any ViewNodeProtocol]()) { partialResult, index in
+            partialResult[index] = wmNodes[index] as? any ViewNodeProtocol
+        }
+    }
+
+    mutating func addNode(_ node: WMNodeProtocol) {
+        let portNode = (node as? FlowNodePortProtocol)
+        let flowNode = FlowNode(
+            name: node.name,
+            titleBarColor: .red,
+            inputs: portNode?.inputs ?? [],
+            outputs: portNode?.outputs ?? []
+        )
+        let index = patch.nodes.count
+        patch.nodes.append(flowNode)
+        wmNodes[index] = node
+        if node is PipelineNode {
+            pipelineNodesIndex.insert(index)
+        }
+        if node is (any ViewNodeProtocol) {
+            viewNodesIndex.insert(index)
+            updateViewNodes()
+        }
+    }
+
+    mutating func deleteNodes(at indices: Set<FlowNodeIndex>) {
+        let nodeWires = patch.wires.filter { wire in
+            indices.contains(wire.input.nodeIndex) || indices.contains(wire.output.nodeIndex)
+        }
+        nodeWires.forEach { wire in
+            patch.wires.remove(wire)
+        }
+        patch.nodes.remove(atOffsets: IndexSet(indices))
+        indices.forEach { index in
+            wmNodes.removeValue(forKey: index)
+            pipelineNodesIndex.remove(index)
+            viewNodesIndex.remove(index)
+        }
+        updateViewNodes()
+    }
+
+    subscript(position index: FlowNodeIndex) -> CGPoint {
+        patch.nodes[index].position
+    }
+
+    var connectedNodes: [FlowNodeIndex: PipelineHandleProtocol] = [:]
+//    var connectedViewNodes: [FlowNodeIndex: any ViewNodeProtocol] = [:]
+
+    mutating func connect(pipeline: Pipeline) {
+        viewNodesIndex.removeAll()
+        connectedNodes = pipelineNodes.reduce(into: [FlowNodeIndex: PipelineHandleProtocol](), { partialResult, element in
+            let index = element.key
+            var node = element.value
+            node.dispatcher = pipeline
+            node.eventDispatcher?.nodeIndex = index
+            partialResult[index] = node
+            if let viewNode = node as? any ViewNodeProtocol {
+                viewNodes[index] = viewNode
+            }
+        })
+        pipeline.wires = patch.wires
+    }
+    mutating func disconnect(pipeline: Pipeline) {
+        connectedNodes.removeAll()
+        pipeline.wires.removeAll()
+    }
+}
+
+struct UserWorkSpace: View {
+    let nodeSpace: NodeSpace
+//    let pipeline: Pipeline
     let layoutConstants: LayoutConstants
 
-    init(nodes: [WMNodeProtocol], patch: FlowPatch, layout: LayoutConstants) {
-        self.nodes = nodes
-//        nodes = patch.nodes.enumerated().reduce(into: [:]) { partialResult, enumElement in
-//            let nodeID: Flow.NodeIndex = enumElement.offset
-//            if let nodeType = nodeTypes[nodeID] {
-//                partialResult[nodeID] = enumElement.element
-////                partialResult[nodeID] = nodeType.init(with: nodeID, node: enumElement.element)
-//            }
-//        }
-        var pipelineNodes = [FlowNodeIndex: PipelineNode]()
-        var viewNodes = [FlowNodeIndex: any ViewNodeProtocol]()
-        nodes.enumerated().forEach { enumerated in
-            if let node = enumerated.element as? PipelineNode {
-                pipelineNodes[enumerated.offset] = node
-            }
-            if let node = enumerated.element as? (any ViewNodeProtocol) {
-                viewNodes[enumerated.offset] = node
-            }
-        }
-        let pipeLine = Pipeline(nodes: pipelineNodes, wires: patch.wires)
-        nodes.enumerated().forEach { enumerated in
-            if var obj = enumerated.element as? any PipelineNode {
-                obj.setPipeline(pipeLine, nodeIndex: enumerated.offset)
-            }
-        }
-        self.viewNodes = viewNodes.reduce(into: [FlowNodeIndex: any View](), { partialResult, element in
-            if var obj = element.value as? any PipelineNode & ViewNodeProtocol {
-                obj.setPipeline(pipeLine, nodeIndex: element.key)
-                partialResult[element.key] = obj
-            } else {
-                partialResult[element.key] = element.value
-            }
-        })
-        self.viewNodesKeys = viewNodes.keys.map({ index in
+    var nodes: [FlowNodeIndex: any ViewNodeProtocol] = [:]
+    var viewNodesKeys: [FlowNodeIndex] = []
+
+    init(nodeSpace: NodeSpace, layout: LayoutConstants) {
+        self.nodeSpace = nodeSpace
+        self.layoutConstants = layout
+        self.nodes = nodeSpace.viewNodes
+        self.viewNodesKeys = nodeSpace.viewNodes.keys.map({ index in
             return index
         })
-        self.pipeline = pipeLine
-        self.patch = patch
-        self.layoutConstants = layout
     }
 
     var body: some View {
         ZStack {
             ForEach(0..<viewNodesKeys.count, id: \.self) { index in
                 let key = viewNodesKeys[index]
-                if let view = viewNodes[key] {
-                    if patch.nodes.count > key {
-                        let flowNode = patch.nodes[key]
-                        AnyView(view).position(flowNode.position).offset(CGSize(width: layoutConstants.nodeWidth / 2, height: layoutConstants.nodeTitleHeight))
-                    } else {
-                        AnyView(view)
-                    }
+                if let view = nodeSpace.viewNodes[key] {
+                    AnyView(view).position(nodeSpace[position: key]).offset(CGSize(width: layoutConstants.nodeWidth / 2, height: layoutConstants.nodeTitleHeight))
                 }
             }
         }

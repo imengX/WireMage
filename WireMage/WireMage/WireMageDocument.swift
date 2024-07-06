@@ -15,25 +15,44 @@ extension UTType {
 }
 
 struct WireMageDocument: FileDocument {
-    var text: String
+    var data: NodeSpace
 
-    init(text: String = "Hello, world!") {
-        self.text = text
-    }
-
-    static var readableContentTypes: [UTType] { [.exampleText] }
+    static var readableContentTypes: [UTType] { [.json] }
 
     init(configuration: ReadConfiguration) throws {
-        guard let data = configuration.file.regularFileContents,
-              let string = String(data: data, encoding: .utf8)
-        else {
-            throw CocoaError(.fileReadCorruptFile)
-        }
-        text = string
+        guard
+            let data = configuration.file.regularFileContents
+        else { throw NSError() }
+        self.data = try JSONDecoder().decode(NodeSpace.self, from: data)
     }
-    
+
+    init(data: NodeSpace) {
+        self.data = data
+    }
+
     func fileWrapper(configuration: WriteConfiguration) throws -> FileWrapper {
-        let data = text.data(using: .utf8)!
-        return .init(regularFileWithContents: data)
+        let contents = try JSONEncoder().encode(data)
+        return FileWrapper(regularFileWithContents: contents)
+    }
+}
+
+struct JsonDocument: FileDocument {
+
+    static var readableContentTypes: [UTType] { [.json] }
+    var json: Data
+
+    init(configuration: ReadConfiguration) throws {
+        guard
+            let data = configuration.file.regularFileContents
+        else { throw NSError() }
+        self.json = data
+    }
+
+    init(json: Data) {
+        self.json = json
+    }
+
+    func fileWrapper(configuration: WriteConfiguration) throws -> FileWrapper {
+        FileWrapper(regularFileWithContents: self.json)
     }
 }

@@ -86,7 +86,7 @@ struct PortNodePreviewView: NodeTemplateProtocol, View {
     var body: some View {
         VStack(spacing: 0) {
             HStack(spacing: 0) {
-                Text(name).fixedSize(horizontal: true, vertical: true)
+                Text(name).fixedSize(horizontal: false, vertical: true)
             }
             Divider()
             portsGroupView(with: "输入", ports: inputs)
@@ -100,7 +100,7 @@ struct PortNodePreviewView: NodeTemplateProtocol, View {
 
     @ViewBuilder func portsGroupView(with name: String, ports: [FlowPort]) -> some View {
         HStack(spacing: 0) {
-            Text(name).fixedSize(horizontal: true, vertical: true)
+            Text(name).fixedSize(horizontal: false, vertical: true)
             Group {
 //                Color(.secondarySystemFill).frame(maxHeight: .infinity).frame(idealWidth: 1, maxHeight: .infinity)
                 Color(.secondarySystemFill).frame(maxWidth: 1, maxHeight: .infinity)
@@ -113,7 +113,7 @@ struct PortNodePreviewView: NodeTemplateProtocol, View {
     @ViewBuilder func portsView(with ports: [FlowPort]) -> some View {
         VStack(spacing: 0) {
             ForEach(0..<ports.count, id: \.self) { index in
-                Text(ports[index].name).fixedSize(horizontal: true, vertical: true).background()
+                Text(ports[index].name).fixedSize(horizontal: false, vertical: true).background()
                 if index != ports.count - 1 {
                     Divider()
                 }

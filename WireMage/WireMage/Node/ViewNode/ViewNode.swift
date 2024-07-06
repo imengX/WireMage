@@ -12,14 +12,14 @@ import Controls
 protocol ViewNodeProtocol: WMNodeProtocol, View, Hashable {}
 
 struct ControlViewNode<ContentView: ControlView & ViewNodeColorConfiguration>: ViewNodeProtocol, FlowNodePortProtocol, PipelineNode {
-
-    mutating func setPipeline(_ pipeline: PipelineForNodeProtocol, nodeIndex: FlowNodeIndex) {
-        self.pipeline = pipeline
-        self.nodeIndex = nodeIndex
+    var dispatcher: PipelineDispatchProtocol? {
+        get { eventDispatcher?.pipeline }
+        set {
+            eventDispatcher?.pipeline = newValue as? Pipeline
+        }
     }
-    
-    var nodeIndex: FlowNodeIndex?
-    var pipeline: PipelineForNodeProtocol?
+
+    var eventDispatcher: PipelineEventDispatcher?
 
     static func == (lhs: ControlViewNode<ContentView>, rhs: ControlViewNode<ContentView>) -> Bool {
         lhs.name == rhs.name
@@ -46,53 +46,32 @@ struct ControlViewNode<ContentView: ControlView & ViewNodeColorConfiguration>: V
     @Environment(\.viewNodeEnvironment) var viewNodeEnvironment
     @State var values: ContentView.Value = ContentView.Value.cncvDefaultValue {
         didSet {
-            guard let nodeIndex = self.nodeIndex else { return }
-            if let valueMapper = values as? [FlowPort: Any] {
-                for value in valueMapper {
-                    Task {
-                        do {
-                            try await self.dispatch(nodeID: nodeIndex, data: value.value, to: value.key)
-                        } catch {
-                            print(error)
-                        }
-                    }
-                }
+            forwardDispatch()
+        }
+    }
 
-//                let oldValueMapper = oldValue as? [FlowPort: any Equatable] {
-//                for value in valueMapper {
-//                    if let oldValue = oldValueMapper[value.key] {
-//                        if value.value == oldValue {
-//
-//                        }
-//                    }
-//                }
-//                for enumerated in outputs.enumerated() {
-//                    guard let data = valueMapper[enumerated.element] else { return }
-//                    let portIndex = enumerated.offset
-//                    Task {
-//                        do {
-//                            try await self.pipeline?.dispatch(data: data, to: FlowOutputID(nodeIndex, portIndex))
-//                        } catch {
-//                            print(error)
-//                        }
-//                    }
-//                }
-            } else {
+    func forwardDispatch() {
+        if let valueMapper = values as? [FlowPort: Any] {
+            for value in valueMapper {
                 Task {
                     do {
-                        try await self.pipeline?.dispatch(data: values, to: FlowOutputID(nodeIndex, 0))
+                        try await self.eventDispatcher?.dispatch(data: value.value, to: value.key)
                     } catch {
                         print(error)
                     }
                 }
             }
-
-//            guard let data = data else { return }
-
+        } else {
+            Task {
+                do {
+                    try await self.eventDispatcher?.dispatch(data: values)
+                } catch {
+                    print(error)
+                }
+            }
         }
     }
 
-//    weak var pipeline: PipelineForNodeProtocol?
     let inputs: [FlowPort]
     let outputs: [FlowPort]
 
@@ -101,6 +80,7 @@ struct ControlViewNode<ContentView: ControlView & ViewNodeColorConfiguration>: V
         let portDefine = (ContentView.self as? FlowNodePortDefineProtocol.Type)
         self.inputs = portDefine?.inputs ?? []
         self.outputs = portDefine?.outputs ?? []
+        eventDispatcher = PipelineEventDispatcher(inputs: self.inputs, outputs: self.outputs)
     }
 
     var body: some View {

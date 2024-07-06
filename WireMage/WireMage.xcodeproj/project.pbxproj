@@ -12,16 +12,6 @@
 		5123692F2BF3453900F275C9 /* Controls in Frameworks */ = {isa = PBXBuildFile; productRef = 5123692E2BF3453900F275C9 /* Controls */; };
 		512369322BF3454600F275C9 /* Flow in Frameworks */ = {isa = PBXBuildFile; productRef = 512369312BF3454600F275C9 /* Flow */; };
 		512369352BF3467400F275C9 /* PadControl in Frameworks */ = {isa = PBXBuildFile; platformFilter = ios; productRef = 512369342BF3467400F275C9 /* PadControl */; };
-		5123695B2BF34C2000F275C9 /* ControlsDemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512369502BF34C2000F275C9 /* ControlsDemoApp.swift */; };
-		5123695C2BF34C2000F275C9 /* KeyboardDemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512369512BF34C2000F275C9 /* KeyboardDemoView.swift */; };
-		5123695D2BF34C2000F275C9 /* ArcKnobDemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512369522BF34C2000F275C9 /* ArcKnobDemoView.swift */; };
-		5123695F2BF34C2000F275C9 /* IndexedSliderDemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512369542BF34C2000F275C9 /* IndexedSliderDemoView.swift */; };
-		512369602BF34C2000F275C9 /* PitchModWheelDemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512369552BF34C2000F275C9 /* PitchModWheelDemoView.swift */; };
-		512369612BF34C2000F275C9 /* RibbonDemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512369562BF34C2000F275C9 /* RibbonDemoView.swift */; };
-		512369622BF34C2000F275C9 /* XYPadDemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512369572BF34C2000F275C9 /* XYPadDemoView.swift */; };
-		512369632BF34C2000F275C9 /* JoystickDemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512369582BF34C2000F275C9 /* JoystickDemoView.swift */; };
-		512369642BF34C2000F275C9 /* SmallKnobDemoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512369592BF34C2000F275C9 /* SmallKnobDemoView.swift */; };
-		512369652BF34C2000F275C9 /* ContentView1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5123695A2BF34C2000F275C9 /* ContentView1.swift */; };
 		512369682BF5AF0100F275C9 /* Pipeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 512369672BF5AF0100F275C9 /* Pipeline.swift */; };
 		5123696D2BF5ED8400F275C9 /* ViewNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5123696C2BF5ED8400F275C9 /* ViewNode.swift */; };
 		5123696F2BF5EE1E00F275C9 /* ViewComponentNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5123696E2BF5EE1E00F275C9 /* ViewComponentNode.swift */; };
@@ -34,7 +24,6 @@
 		51AA4B772BF6EDE1008C166C /* WMNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51AA4B762BF6EDE1008C166C /* WMNode.swift */; };
 		51AD40E82BF344EE00CCD68E /* WireMageApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51AD40E72BF344EE00CCD68E /* WireMageApp.swift */; };
 		51AD40EA2BF344EE00CCD68E /* WireMageDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51AD40E92BF344EE00CCD68E /* WireMageDocument.swift */; };
-		51AD40EC2BF344EE00CCD68E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51AD40EB2BF344EE00CCD68E /* ContentView.swift */; };
 		51AD40EE2BF344F000CCD68E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 51AD40ED2BF344F000CCD68E /* Assets.xcassets */; };
 		51AD40F32BF344F000CCD68E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 51AD40F22BF344F000CCD68E /* Preview Assets.xcassets */; };
 		51C08D3C2C160B2700514A84 /* ControlPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51C08D3B2C160B2700514A84 /* ControlPanel.swift */; };
@@ -46,16 +35,6 @@
 
 /* Begin PBXFileReference section */
 		511F9C282C10A518009E64A0 /* AlertViewPopover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewPopover.swift; sourceTree = "<group>"; };
-		512369502BF34C2000F275C9 /* ControlsDemoApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControlsDemoApp.swift; sourceTree = "<group>"; };
-		512369512BF34C2000F275C9 /* KeyboardDemoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardDemoView.swift; sourceTree = "<group>"; };
-		512369522BF34C2000F275C9 /* ArcKnobDemoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArcKnobDemoView.swift; sourceTree = "<group>"; };
-		512369542BF34C2000F275C9 /* IndexedSliderDemoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndexedSliderDemoView.swift; sourceTree = "<group>"; };
-		512369552BF34C2000F275C9 /* PitchModWheelDemoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PitchModWheelDemoView.swift; sourceTree = "<group>"; };
-		512369562BF34C2000F275C9 /* RibbonDemoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RibbonDemoView.swift; sourceTree = "<group>"; };
-		512369572BF34C2000F275C9 /* XYPadDemoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XYPadDemoView.swift; sourceTree = "<group>"; };
-		512369582BF34C2000F275C9 /* JoystickDemoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoystickDemoView.swift; sourceTree = "<group>"; };
-		512369592BF34C2000F275C9 /* SmallKnobDemoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SmallKnobDemoView.swift; sourceTree = "<group>"; };
-		5123695A2BF34C2000F275C9 /* ContentView1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView1.swift; sourceTree = "<group>"; };
 		512369672BF5AF0100F275C9 /* Pipeline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pipeline.swift; sourceTree = "<group>"; };
 		5123696C2BF5ED8400F275C9 /* ViewNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewNode.swift; sourceTree = "<group>"; };
 		5123696E2BF5EE1E00F275C9 /* ViewComponentNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewComponentNode.swift; sourceTree = "<group>"; };
@@ -67,7 +46,6 @@
 		51AD40E42BF344EE00CCD68E /* WireMage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WireMage.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		51AD40E72BF344EE00CCD68E /* WireMageApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WireMageApp.swift; sourceTree = "<group>"; };
 		51AD40E92BF344EE00CCD68E /* WireMageDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WireMageDocument.swift; sourceTree = "<group>"; };
-		51AD40EB2BF344EE00CCD68E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		51AD40ED2BF344F000CCD68E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		51AD40EF2BF344F000CCD68E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		51AD40F02BF344F000CCD68E /* WireMage.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WireMage.entitlements; sourceTree = "<group>"; };
@@ -102,23 +80,6 @@
 				511F9C282C10A518009E64A0 /* AlertViewPopover.swift */,
 			);
 			path = Compon;
-			sourceTree = "<group>";
-		};
-		5123694F2BF34C2000F275C9 /* Shared */ = {
-			isa = PBXGroup;
-			children = (
-				512369502BF34C2000F275C9 /* ControlsDemoApp.swift */,
-				512369512BF34C2000F275C9 /* KeyboardDemoView.swift */,
-				512369522BF34C2000F275C9 /* ArcKnobDemoView.swift */,
-				512369542BF34C2000F275C9 /* IndexedSliderDemoView.swift */,
-				512369552BF34C2000F275C9 /* PitchModWheelDemoView.swift */,
-				512369562BF34C2000F275C9 /* RibbonDemoView.swift */,
-				512369572BF34C2000F275C9 /* XYPadDemoView.swift */,
-				512369582BF34C2000F275C9 /* JoystickDemoView.swift */,
-				512369592BF34C2000F275C9 /* SmallKnobDemoView.swift */,
-				5123695A2BF34C2000F275C9 /* ContentView1.swift */,
-			);
-			path = Shared;
 			sourceTree = "<group>";
 		};
 		512369662BF5AEF700F275C9 /* Pipeline */ = {
@@ -201,10 +162,8 @@
 				512369702BF5EE5800F275C9 /* Model */,
 				512369692BF5AF4700F275C9 /* WorkSpace */,
 				512369662BF5AEF700F275C9 /* Pipeline */,
-				5123694F2BF34C2000F275C9 /* Shared */,
 				51AD40E72BF344EE00CCD68E /* WireMageApp.swift */,
 				51AD40E92BF344EE00CCD68E /* WireMageDocument.swift */,
-				51AD40EB2BF344EE00CCD68E /* ContentView.swift */,
 				51AD40ED2BF344F000CCD68E /* Assets.xcassets */,
 				51AD40EF2BF344F000CCD68E /* Info.plist */,
 				51AD40F02BF344F000CCD68E /* WireMage.entitlements */,
@@ -321,28 +280,17 @@
 				5123696D2BF5ED8400F275C9 /* ViewNode.swift in Sources */,
 				512369682BF5AF0100F275C9 /* Pipeline.swift in Sources */,
 				51C08D402C16CACD00514A84 /* CarControlNode.swift in Sources */,
-				512369622BF34C2000F275C9 /* XYPadDemoView.swift in Sources */,
-				512369652BF34C2000F275C9 /* ContentView1.swift in Sources */,
-				5123695D2BF34C2000F275C9 /* ArcKnobDemoView.swift in Sources */,
 				5123696F2BF5EE1E00F275C9 /* ViewComponentNode.swift in Sources */,
-				512369642BF34C2000F275C9 /* SmallKnobDemoView.swift in Sources */,
-				5123695F2BF34C2000F275C9 /* IndexedSliderDemoView.swift in Sources */,
 				51AD40EA2BF344EE00CCD68E /* WireMageDocument.swift in Sources */,
 				512506432C1746AA009982B5 /* NodeTemplate.swift in Sources */,
-				5123695B2BF34C2000F275C9 /* ControlsDemoApp.swift in Sources */,
 				51AA4B732BF6EBF1008C166C /* ProcessingNode.swift in Sources */,
-				5123695C2BF34C2000F275C9 /* KeyboardDemoView.swift in Sources */,
 				51AA4B772BF6EDE1008C166C /* WMNode.swift in Sources */,
-				51AD40EC2BF344EE00CCD68E /* ContentView.swift in Sources */,
-				512369632BF34C2000F275C9 /* JoystickDemoView.swift in Sources */,
 				512369722BF5EE6800F275C9 /* Define.swift in Sources */,
 				51C08D3E2C160CBE00514A84 /* WorkSpace.swift in Sources */,
 				511F9C292C10A518009E64A0 /* AlertViewPopover.swift in Sources */,
 				51C08D3C2C160B2700514A84 /* ControlPanel.swift in Sources */,
 				512622602C14CABF00693321 /* ControlView.swift in Sources */,
 				51D3891F2BF5FF7200209432 /* NodeCreate.swift in Sources */,
-				512369602BF34C2000F275C9 /* PitchModWheelDemoView.swift in Sources */,
-				512369612BF34C2000F275C9 /* RibbonDemoView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -488,7 +436,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				"INFOPLIST_KEY_UISupportsDocumentBrowser[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UISupportsDocumentBrowser[sdk=iphonesimulator*]" = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
@@ -528,7 +476,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				"INFOPLIST_KEY_UISupportsDocumentBrowser[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UISupportsDocumentBrowser[sdk=iphonesimulator*]" = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.0;

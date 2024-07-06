@@ -9,19 +9,9 @@ import Foundation
 import SwiftUI
 
 class ProcessingBasicNode: WMNodeProtocol, PipelineNode {
-
-    func setPipeline(_ pipeline: PipelineForNodeProtocol, nodeIndex: FlowNodeIndex) {
-        _pipeline = pipeline
-    }
+    var dispatcher: PipelineDispatchProtocol?
     
     let name: String
-
-    weak var _pipeline: (any PipelineForNodeProtocol)?
-
-    var pipeline: PipelineForNodeProtocol? {
-        get { _pipeline }
-        set { _pipeline = newValue }
-    }
 
     required init(name: String) {
         self.name = name
@@ -34,7 +24,7 @@ class ProcessingBasicNode: WMNodeProtocol, PipelineNode {
         let input = pipelinePackage.wire.input
         let outputID = FlowOutputID(input.nodeIndex, 0)
         do {
-            try await pipeline?.dispatch(data: pipelinePackage.data, to: outputID)
+            try await dispatcher?.dispatch(data: pipelinePackage.data, to: outputID)
         } catch {
             print(error)
         }
@@ -50,7 +40,7 @@ class PrintNode: ProcessingBasicNode, FlowNodePortProtocol {
 
     override func handlePackage(pipelinePackage: PipelinePackage) async {
         print(pipelinePackage)
-        print(pipelinePackage.data)
+//        print(pipelinePackage.data)
     }
 }
 

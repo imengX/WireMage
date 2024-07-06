@@ -11,8 +11,8 @@ class SignalConvertNode: ProcessingBasicNode, FlowNodePortProtocol {
     lazy var outputs: [FlowPort] = [signalValuePort]
     lazy var inputs: [FlowPort] = [floatPort, boolPort]
 
-    let floatPort = FlowPort(name: "floatPort", type: .floatValue)
-    let boolPort = FlowPort(name: "boolPort", type: .boolValue)
+    let floatPort = FlowPort(name: "floatPort\n(value>0)", type: .floatValue)
+    let boolPort = FlowPort(name: "boolPort\n(true)", type: .boolValue)
     let signalValuePort = FlowPort(name: "signal", type: .signal)
 
     override func handlePackage(pipelinePackage: PipelinePackage) async {
@@ -24,7 +24,7 @@ class SignalConvertNode: ProcessingBasicNode, FlowNodePortProtocol {
         switch port {
         case floatPort:
             if let data = pipelinePackage.data as? Float {
-                signal = data > 0.5
+                signal = data > 0
             }
         case boolPort:
             if let data = pipelinePackage.data as? Bool {
@@ -37,7 +37,7 @@ class SignalConvertNode: ProcessingBasicNode, FlowNodePortProtocol {
             return
         }
         do {
-            try await pipeline?.dispatch(data: pipelinePackage.data, to: outputID)
+            try await dispatcher?.dispatch(data: pipelinePackage.data, to: outputID)
         } catch {
             print(error)
         }
@@ -52,8 +52,8 @@ class BoolConvertNode: ProcessingBasicNode, FlowNodePortProtocol {
     let floatPort = FlowPort(name: "floatPort", type: .floatValue)
     let boolPort = FlowPort(name: "boolPort", type: .boolValue)
 
-    let truePort = FlowPort(name: "true", type: .boolValue)
-    let falsePort = FlowPort(name: "false", type: .boolValue)
+    let truePort = FlowPort(name: "trueSignal", type: .signal)
+    let falsePort = FlowPort(name: "falseSignal", type: .signal)
 
     override func handlePackage(pipelinePackage: PipelinePackage) async {
         let input = pipelinePackage.wire.input
@@ -63,7 +63,11 @@ class BoolConvertNode: ProcessingBasicNode, FlowNodePortProtocol {
         switch port {
         case floatPort:
             if let data = pipelinePackage.data as? Float {
-                signal = data > 0.5
+                if data > 0.5 {
+                    signal = true
+                } else if data < 0.5 {
+                    signal = false
+                }
             }
         case boolPort:
             if let data = pipelinePackage.data as? Bool {
@@ -71,13 +75,12 @@ class BoolConvertNode: ProcessingBasicNode, FlowNodePortProtocol {
             }
         default: break
         }
-
         guard let signal = signal else {
             return
         }
         let outputID = FlowOutputID(input.nodeIndex, signal ? 0 : 1)
         do {
-            try await pipeline?.dispatch(data: signal, to: outputID)
+            try await dispatcher?.dispatch(data: signal, to: outputID)
         } catch {
             print(error)
         }
