@@ -18,7 +18,6 @@ typealias FlowPort = Flow.Port
 typealias FlowPortType = Flow.PortType
 typealias FlowPatch = Flow.Patch
 
-
 protocol FlowNodePortProtocol {
     var inputs: [FlowPort] { get }
     var outputs: [FlowPort] { get }
@@ -81,16 +80,3 @@ struct PolarValue {
 struct VectorValue {
     var x: Float, y: Float
 }
-
-//extension Flow.OutputID: Codable {
-//    public init(from decoder: Decoder) throws {
-//        
-//    }
-//}
-//extension FlowInputID: Codable {}
-////extension FlowNodeIndex: Codable {}
-//extension FlowNode: Codable {}
-//extension FlowWire: Codable {}
-//extension FlowPort: Codable {}
-//extension FlowPortType: Codable {}
-//extension FlowPatch: Codable {}

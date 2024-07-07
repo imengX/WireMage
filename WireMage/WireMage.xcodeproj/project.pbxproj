@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		511F9C292C10A518009E64A0 /* AlertViewPopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 511F9C282C10A518009E64A0 /* AlertViewPopover.swift */; };
 		5123692C2BF3452F00F275C9 /* PartitionKit in Frameworks */ = {isa = PBXBuildFile; productRef = 5123692B2BF3452F00F275C9 /* PartitionKit */; };
 		5123692F2BF3453900F275C9 /* Controls in Frameworks */ = {isa = PBXBuildFile; productRef = 5123692E2BF3453900F275C9 /* Controls */; };
 		512369322BF3454600F275C9 /* Flow in Frameworks */ = {isa = PBXBuildFile; productRef = 512369312BF3454600F275C9 /* Flow */; };
@@ -26,6 +25,10 @@
 		51AD40EA2BF344EE00CCD68E /* WireMageDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51AD40E92BF344EE00CCD68E /* WireMageDocument.swift */; };
 		51AD40EE2BF344F000CCD68E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 51AD40ED2BF344F000CCD68E /* Assets.xcassets */; };
 		51AD40F32BF344F000CCD68E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 51AD40F22BF344F000CCD68E /* Preview Assets.xcassets */; };
+		51B391542C3AE89B00AC5026 /* AsyncAlgorithms in Frameworks */ = {isa = PBXBuildFile; productRef = 51B391532C3AE89B00AC5026 /* AsyncAlgorithms */; };
+		51B391582C3B0ADD00AC5026 /* SwifterSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 51B391572C3B0ADD00AC5026 /* SwifterSwift */; };
+		51B3915B2C3B0EBA00AC5026 /* Color.Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51B3915A2C3B0EBA00AC5026 /* Color.Extension.swift */; };
+		51B3915D2C3B101E00AC5026 /* Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51B3915C2C3B101E00AC5026 /* Codable.swift */; };
 		51C08D3C2C160B2700514A84 /* ControlPanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51C08D3B2C160B2700514A84 /* ControlPanel.swift */; };
 		51C08D3E2C160CBE00514A84 /* WorkSpace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51C08D3D2C160CBE00514A84 /* WorkSpace.swift */; };
 		51C08D402C16CACD00514A84 /* CarControlNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51C08D3F2C16CACD00514A84 /* CarControlNode.swift */; };
@@ -34,7 +37,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		511F9C282C10A518009E64A0 /* AlertViewPopover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewPopover.swift; sourceTree = "<group>"; };
 		512369672BF5AF0100F275C9 /* Pipeline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pipeline.swift; sourceTree = "<group>"; };
 		5123696C2BF5ED8400F275C9 /* ViewNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewNode.swift; sourceTree = "<group>"; };
 		5123696E2BF5EE1E00F275C9 /* ViewComponentNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewComponentNode.swift; sourceTree = "<group>"; };
@@ -50,6 +52,8 @@
 		51AD40EF2BF344F000CCD68E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		51AD40F02BF344F000CCD68E /* WireMage.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WireMage.entitlements; sourceTree = "<group>"; };
 		51AD40F22BF344F000CCD68E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		51B3915A2C3B0EBA00AC5026 /* Color.Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.Extension.swift; sourceTree = "<group>"; };
+		51B3915C2C3B101E00AC5026 /* Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Codable.swift; sourceTree = "<group>"; };
 		51C08D3B2C160B2700514A84 /* ControlPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControlPanel.swift; sourceTree = "<group>"; };
 		51C08D3D2C160CBE00514A84 /* WorkSpace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkSpace.swift; sourceTree = "<group>"; };
 		51C08D3F2C16CACD00514A84 /* CarControlNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarControlNode.swift; sourceTree = "<group>"; };
@@ -67,7 +71,9 @@
 				512506412C1735F0009982B5 /* SwiftUIPager in Frameworks */,
 				512369322BF3454600F275C9 /* Flow in Frameworks */,
 				5123692C2BF3452F00F275C9 /* PartitionKit in Frameworks */,
+				51B391582C3B0ADD00AC5026 /* SwifterSwift in Frameworks */,
 				5123692F2BF3453900F275C9 /* Controls in Frameworks */,
+				51B391542C3AE89B00AC5026 /* AsyncAlgorithms in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,7 +83,6 @@
 		511F9C272C10A4F9009E64A0 /* Compon */ = {
 			isa = PBXGroup;
 			children = (
-				511F9C282C10A518009E64A0 /* AlertViewPopover.swift */,
 			);
 			path = Compon;
 			sourceTree = "<group>";
@@ -113,6 +118,7 @@
 			isa = PBXGroup;
 			children = (
 				512369712BF5EE6800F275C9 /* Define.swift */,
+				51B3915C2C3B101E00AC5026 /* Codable.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -121,7 +127,6 @@
 			isa = PBXGroup;
 			children = (
 				51AA4B722BF6EBF1008C166C /* ProcessingNode.swift */,
-				51C08D3F2C16CACD00514A84 /* CarControlNode.swift */,
 				51C08D412C16CB3300514A84 /* ConvertNode.swift */,
 			);
 			path = ProcessingNode;
@@ -131,6 +136,7 @@
 			isa = PBXGroup;
 			children = (
 				51AA4B762BF6EDE1008C166C /* WMNode.swift */,
+				51B391552C3B05D700AC5026 /* TerminalNode */,
 				51AA4B712BF6EBD9008C166C /* ProcessingNode */,
 				5123696B2BF5ED7C00F275C9 /* ViewNode */,
 			);
@@ -156,6 +162,7 @@
 		51AD40E62BF344EE00CCD68E /* WireMage */ = {
 			isa = PBXGroup;
 			children = (
+				51B391592C3B0EAC00AC5026 /* Helper */,
 				511F9C272C10A4F9009E64A0 /* Compon */,
 				51AA4B752BF6ED10008C166C /* Node */,
 				51D3891D2BF5FF5F00209432 /* NodeCreate */,
@@ -178,6 +185,22 @@
 				51AD40F22BF344F000CCD68E /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		51B391552C3B05D700AC5026 /* TerminalNode */ = {
+			isa = PBXGroup;
+			children = (
+				51C08D3F2C16CACD00514A84 /* CarControlNode.swift */,
+			);
+			path = TerminalNode;
+			sourceTree = "<group>";
+		};
+		51B391592C3B0EAC00AC5026 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				51B3915A2C3B0EBA00AC5026 /* Color.Extension.swift */,
+			);
+			path = Helper;
 			sourceTree = "<group>";
 		};
 		51D3891D2BF5FF5F00209432 /* NodeCreate */ = {
@@ -212,6 +235,8 @@
 				512369342BF3467400F275C9 /* PadControl */,
 				512622622C155B0900693321 /* Popovers */,
 				512506402C1735F0009982B5 /* SwiftUIPager */,
+				51B391532C3AE89B00AC5026 /* AsyncAlgorithms */,
+				51B391572C3B0ADD00AC5026 /* SwifterSwift */,
 			);
 			productName = WireMage;
 			productReference = 51AD40E42BF344EE00CCD68E /* WireMage.app */;
@@ -248,6 +273,8 @@
 				512369332BF3467400F275C9 /* XCLocalSwiftPackageReference "../Package/PadControl" */,
 				512622612C155B0900693321 /* XCLocalSwiftPackageReference "../Package/Popovers" */,
 				5125063F2C1735F0009982B5 /* XCLocalSwiftPackageReference "../Package/SwiftUIPager" */,
+				51B391522C3AE89B00AC5026 /* XCRemoteSwiftPackageReference "swift-async-algorithms" */,
+				51B391562C3B0ADD00AC5026 /* XCRemoteSwiftPackageReference "SwifterSwift" */,
 			);
 			productRefGroup = 51AD40E52BF344EE00CCD68E /* Products */;
 			projectDirPath = "";
@@ -276,6 +303,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				51AD40E82BF344EE00CCD68E /* WireMageApp.swift in Sources */,
+				51B3915D2C3B101E00AC5026 /* Codable.swift in Sources */,
 				51C08D422C16CB3300514A84 /* ConvertNode.swift in Sources */,
 				5123696D2BF5ED8400F275C9 /* ViewNode.swift in Sources */,
 				512369682BF5AF0100F275C9 /* Pipeline.swift in Sources */,
@@ -285,9 +313,9 @@
 				512506432C1746AA009982B5 /* NodeTemplate.swift in Sources */,
 				51AA4B732BF6EBF1008C166C /* ProcessingNode.swift in Sources */,
 				51AA4B772BF6EDE1008C166C /* WMNode.swift in Sources */,
+				51B3915B2C3B0EBA00AC5026 /* Color.Extension.swift in Sources */,
 				512369722BF5EE6800F275C9 /* Define.swift in Sources */,
 				51C08D3E2C160CBE00514A84 /* WorkSpace.swift in Sources */,
-				511F9C292C10A518009E64A0 /* AlertViewPopover.swift in Sources */,
 				51C08D3C2C160B2700514A84 /* ControlPanel.swift in Sources */,
 				512622602C14CABF00693321 /* ControlView.swift in Sources */,
 				51D3891F2BF5FF7200209432 /* NodeCreate.swift in Sources */,
@@ -436,7 +464,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				"INFOPLIST_KEY_UISupportsDocumentBrowser[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UISupportsDocumentBrowser[sdk=iphonesimulator*]" = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
@@ -476,7 +504,7 @@
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				"INFOPLIST_KEY_UISupportsDocumentBrowser[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UISupportsDocumentBrowser[sdk=iphonesimulator*]" = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 13.0;
@@ -541,6 +569,25 @@
 		};
 /* End XCLocalSwiftPackageReference section */
 
+/* Begin XCRemoteSwiftPackageReference section */
+		51B391522C3AE89B00AC5026 /* XCRemoteSwiftPackageReference "swift-async-algorithms" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-async-algorithms.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.1;
+			};
+		};
+		51B391562C3B0ADD00AC5026 /* XCRemoteSwiftPackageReference "SwifterSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwifterSwift/SwifterSwift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.2.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
 /* Begin XCSwiftPackageProductDependency section */
 		5123692B2BF3452F00F275C9 /* PartitionKit */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -565,6 +612,16 @@
 		512622622C155B0900693321 /* Popovers */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Popovers;
+		};
+		51B391532C3AE89B00AC5026 /* AsyncAlgorithms */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 51B391522C3AE89B00AC5026 /* XCRemoteSwiftPackageReference "swift-async-algorithms" */;
+			productName = AsyncAlgorithms;
+		};
+		51B391572C3B0ADD00AC5026 /* SwifterSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 51B391562C3B0ADD00AC5026 /* XCRemoteSwiftPackageReference "SwifterSwift" */;
+			productName = SwifterSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

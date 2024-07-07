@@ -36,7 +36,7 @@ struct NodeTemplatePreviewView<PreviewContentView: ViewNodeProtocol>: NodeTempla
 
     var body: some View {
         viewNode ??
-        PreviewContentView.init(name: viewNodeEnvironment.name)
+        PreviewContentView.init(name: viewNodeEnvironment.name, id: UUID().uuidString)
     }
 
     let viewNode: PreviewContentView?

@@ -8,7 +8,7 @@
 import Foundation
 import Observation
 
-@Observable
+//@Observable
 class PipelineEventDispatcher: FlowNodePortProtocol {
 
     var nodeIndex: FlowNodeIndex?
@@ -61,11 +61,11 @@ extension PipelineNode where Self: FlowNodePortProtocol {
             print("notfind port")
             return
         }
-        guard let dataType = port.type.dataType,
-              dataType == type(of: data)
-        else {
-            return
-        }
+//        guard let dataType = port.type.dataType,
+//              dataType == type(of: data)
+//        else {
+//            return
+//        }
         try await self.dispatcher?.dispatch(
             data: data, to: FlowOutputID(nodeID, protIndex)
         )
@@ -74,7 +74,7 @@ extension PipelineNode where Self: FlowNodePortProtocol {
 
 extension PipelineNode where Self: PipelineHandleProtocol {
 
-    func handlePackage(pipelinePackage: PipelinePackage) async {
+    func handlePackage(pipelinePackage: PipelinePackage) async throws {
         let input = pipelinePackage.wire.input
         let outputID = FlowOutputID(input.nodeIndex, 0)
         do {
@@ -93,7 +93,7 @@ struct PipelinePackage {
 }
 
 protocol PipelineHandleProtocol {
-    func handlePackage(pipelinePackage: PipelinePackage) async
+    func handlePackage(pipelinePackage: PipelinePackage) async throws
 }
 
 protocol PipelineDispatchProtocol {

@@ -12,6 +12,14 @@ import Controls
 protocol ViewNodeProtocol: WMNodeProtocol, View, Hashable {}
 
 struct ControlViewNode<ContentView: ControlView & ViewNodeColorConfiguration>: ViewNodeProtocol, FlowNodePortProtocol, PipelineNode {
+    func hash(into hasher: inout Hasher) {
+        id.hash(into: &hasher)
+    }
+
+    static func == (lhs: ControlViewNode<ContentView>, rhs: ControlViewNode<ContentView>) -> Bool {
+        lhs.id == rhs.id
+    }
+
     var dispatcher: PipelineDispatchProtocol? {
         get { eventDispatcher?.pipeline }
         set {
@@ -21,11 +29,7 @@ struct ControlViewNode<ContentView: ControlView & ViewNodeColorConfiguration>: V
 
     var eventDispatcher: PipelineEventDispatcher?
 
-    static func == (lhs: ControlViewNode<ContentView>, rhs: ControlViewNode<ContentView>) -> Bool {
-        lhs.name == rhs.name
-    }
-
-    func handlePackage(pipelinePackage: PipelinePackage) async {
+    func handlePackage(pipelinePackage: PipelinePackage) async throws {
         if let newValue = pipelinePackage.data as? ContentView.Value {
             self.values = newValue
         } else if ContentView.Value.self is String.Type {
@@ -37,10 +41,7 @@ struct ControlViewNode<ContentView: ControlView & ViewNodeColorConfiguration>: V
         }
     }
 
-    func hash(into hasher: inout Hasher) {
-        name.hash(into: &hasher)
-    }
-
+    let id: WMNodeID
     let name: String
 
     @Environment(\.viewNodeEnvironment) var viewNodeEnvironment
@@ -75,7 +76,8 @@ struct ControlViewNode<ContentView: ControlView & ViewNodeColorConfiguration>: V
     let inputs: [FlowPort]
     let outputs: [FlowPort]
 
-    init(name: String) {
+    init(name: String, id: WMNodeID = UUID().uuidString) {
+        self.id = id
         self.name = name
         let portDefine = (ContentView.self as? FlowNodePortDefineProtocol.Type)
         self.inputs = portDefine?.inputs ?? []

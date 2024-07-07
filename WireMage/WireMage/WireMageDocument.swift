@@ -15,7 +15,7 @@ extension UTType {
 }
 
 struct WireMageDocument: FileDocument {
-    var data: NodeSpace
+    var data: NodeStorage
 
     static var readableContentTypes: [UTType] { [.json] }
 
@@ -23,10 +23,10 @@ struct WireMageDocument: FileDocument {
         guard
             let data = configuration.file.regularFileContents
         else { throw NSError() }
-        self.data = try JSONDecoder().decode(NodeSpace.self, from: data)
+        self.data = try JSONDecoder().decode(NodeStorage.self, from: data)
     }
 
-    init(data: NodeSpace) {
+    init(data: NodeStorage) {
         self.data = data
     }
 

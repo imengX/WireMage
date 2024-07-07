@@ -47,7 +47,7 @@ class CarControlNode: ProcessingBasicNode, FlowNodePortProtocol {
 
     let outputs: [FlowPort] = []
 
-    override func handlePackage(pipelinePackage: PipelinePackage) async {
+    override func handlePackage(pipelinePackage: PipelinePackage) async throws {
         let port = inputs[pipelinePackage.wire.input.portIndex]
         switch port {
         case polar:
@@ -69,6 +69,7 @@ class CarControlNode: ProcessingBasicNode, FlowNodePortProtocol {
             await sendSignal(.ledoff)
         default: break
         }
+        await sendSignal(.stop)
     }
 
     var isSendingSignal = false
@@ -98,6 +99,7 @@ class CarControlNode: ProcessingBasicNode, FlowNodePortProtocol {
 
             var request = URLRequest(url: url)
             request.httpMethod = "GET"
+            request.timeoutInterval = 1
             do {
                 let response = try await URLSession.shared.data(for: request)
                 guard let httpResponse = response.1 as? HTTPURLResponse else {

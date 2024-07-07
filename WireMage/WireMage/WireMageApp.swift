@@ -13,42 +13,53 @@ import Popovers
 
 @main
 struct WireMageApp: App {
+
     var body: some Scene {
-        DocumentGroup(newDocument: WireMageDocument(data: NodeSpace())) { file in
-//            file.document
-            //            ContentView(document: file.$document)
-            ContentView(nodeSpace: file.$document.data)
+        DocumentGroup(newDocument: WireMageDocument(data: .init())) { file in
+            ContentView(storage: file.document.data) { storage in
+                file.$document.data.wrappedValue = storage
+            }.task {
+                if let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first {
+                    print(documentsURL)
+                }
+            }
         }
     }
 }
 
 struct ContentView: View {
-    var pipeline = Pipeline()
+
+    @State var nodeSpace: NodeSpace
 
     @State private var addNodePanel = false
     @State private var editNodeView = false {
         didSet {
             pan = .zero
             zoom = 1
-            if editNodeView {
-                nodeSpace.disconnect(pipeline: pipeline)
-            } else {
-                nodeSpace.connect(pipeline: pipeline)
-            }
+//            if editNodeView {
+//                nodeSpace.disconnect(pipeline: pipeline)
+//            } else {
+//                nodeSpace.connect(pipeline: pipeline)
+//            }
         }
     }
 
-    @Binding var nodeSpace: NodeSpace
+//    var nodeSpace: NodeSpace
+//    @Binding var nodeStorage: NodeStorage
 
     @State var selection = Set<FlowNodeIndex>()
-
-    //    @State var nodes: [WMNodeProtocol] = []
-
     @State var pan: CGSize = .zero
     @State var zoom: CGFloat = 1
 
     let layout: LayoutConstants = LayoutConstants()
+    typealias StorageAction = (_ storage: NodeStorage)->Void
+    var editDoneAction: StorageAction?
 
+    init(storage: NodeStorage, editDoneAction: StorageAction?) {
+        self.nodeSpace = NodeSpace(storage: storage)
+        self.editDoneAction = editDoneAction
+    }
+    
     var body: some View {
         VStack(spacing: 0, content: {
             HStack( content: {
@@ -64,7 +75,6 @@ struct ContentView: View {
                         Spacer()
                         Button("删除") {
                             nodeSpace.deleteNodes(at: selection)
-
                             selection.removeAll()
                         }.disabled(selection.isEmpty)
                         Button("添加") {
@@ -72,6 +82,9 @@ struct ContentView: View {
                         }
                         Button("完成") {
                             editNodeView.toggle()
+                            if !editNodeView {
+                                editDoneAction?(nodeSpace.storage)
+                            }
                         }
                     }
                 } else {
@@ -91,24 +104,13 @@ struct ContentView: View {
                         .scaleEffect(zoom, anchor: UnitPoint(x: 0, y: 0))
                         .offset(pan)
                 }
-                UserWorkSpace(nodeSpace: nodeSpace, layout: layout)
-                    .ignoresSafeArea(.all, edges: [.bottom, .horizontal])
-                    .scaleEffect(zoom, anchor: UnitPoint(x: 0, y: 0))
-                    .offset(pan)
-                    .opacity(editNodeView ? 0.2 : 1)
-                    .task {
-                        do {
-                            for try await package in self.pipeline.stream {
-                                if let node = nodeSpace.connectedNodes[package.wire.input.nodeIndex] {
-                                    //                                    if let node = nodeSpace.connectedNodes[package.wire.input.nodeIndex] {
-                                    //                    await self.pipeline.dispatch(package: package, to: node)
-                                    let _ = await node.handlePackage(pipelinePackage: package)
-                                }
-                            }
-                        } catch {
-
-                        }
-                    }
+                if !addNodePanel {
+                    UserWorkSpace(nodeSpace: nodeSpace, layout: layout)
+                        .ignoresSafeArea(.all, edges: [.bottom, .horizontal])
+                        .scaleEffect(zoom, anchor: UnitPoint(x: 0, y: 0))
+                        .offset(pan)
+                        .opacity(editNodeView ? 0.2 : 1)
+                }
                 if editNodeView {
                     if addNodePanel {
                         NodeCreateView { node in
@@ -131,7 +133,8 @@ struct ContentView: View {
                         .ignoresSafeArea(.container, edges: [.bottom, .horizontal])
                     }
                 }
-            }).zIndex(1)
+            })
+            .zIndex(1)
             Spacer()
         })
     }

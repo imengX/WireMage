@@ -11,13 +11,15 @@ import SwiftUI
 class ProcessingBasicNode: WMNodeProtocol, PipelineNode {
     var dispatcher: PipelineDispatchProtocol?
     
+    let id: WMNodeID
     let name: String
 
-    required init(name: String) {
+    required init(name: String, id: WMNodeID = UUID().uuidString) {
+        self.id = id
         self.name = name
     }
 
-    func handlePackage(pipelinePackage: PipelinePackage) async {
+    func handlePackage(pipelinePackage: PipelinePackage) async throws {
         print(pipelinePackage)
         print(pipelinePackage.data)
 //        let defaultPackageHandler = self as PipelineNode
@@ -38,7 +40,7 @@ class PrintNode: ProcessingBasicNode, FlowNodePortProtocol {
     ]
     let outputs: [FlowPort] = []
 
-    override func handlePackage(pipelinePackage: PipelinePackage) async {
+    override func handlePackage(pipelinePackage: PipelinePackage) async throws {
         print(pipelinePackage)
 //        print(pipelinePackage.data)
     }
@@ -62,7 +64,7 @@ class PolarConvertNode: ProcessingBasicNode, FlowNodePortProtocol {
 //        return PolarValue(radius: radius, angle: angle)
 //    }
 
-    override func handlePackage(pipelinePackage: PipelinePackage) async {
+    override func handlePackage(pipelinePackage: PipelinePackage) async throws {
         guard let data = pipelinePackage.data as? VectorValue else { return }
         do {
             try await dispatch(

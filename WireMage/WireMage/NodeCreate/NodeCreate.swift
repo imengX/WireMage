@@ -76,8 +76,10 @@ struct NodeCreateView: View {
     ]
 
     static var templates2: [any NodeTemplateProtocol & View] = [
-        PortNodePreviewView(SignalConvertNode(name: "信号转换器")),
-        PortNodePreviewView(BoolConvertNode(name: "布尔转换器")),
+        PortNodePreviewView(SignalConvertNode(name: "信号转换")),
+        PortNodePreviewView(BoolConvertNode(name: "布尔转换")),
+        PortNodePreviewView(DebounceConvertNode(name: "防抖转换")),
+        PortNodePreviewView(DirectionConvertNode(name: "极坐标方向转换")),
     ]
 
     static var templates3: [any NodeTemplateProtocol & View] = [
@@ -154,7 +156,7 @@ struct NodeCreateView: View {
                                 let preview = template.environment(\.viewNodeEnvironment, nodeEnvironment)
                                 AnyView(preview).frame(minHeight: 140)
                             }) {
-                                let wmNode = template.nodeType.init(name: nodeName)
+                                let wmNode = template.nodeType.init(name: nodeName, id: UUID().uuidString)
                                 finalAction(wmNode)
                                 templateIndex = nil
                             } cancelAction: {
